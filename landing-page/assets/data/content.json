@@ -45,13 +45,14 @@
 
   "problema": {
     "eyebrow": "O problema real",
-    "citacao": "A maioria dos empresários pula o diagnóstico. Quer ação imediata, resultado rápido. Mas nenhuma ação funciona sem entender onde o negócio está travando.",
+    "citacao1": "Resolver problemas faz parte de empreender. ",
+    "citacao2": "O que trava o crescimento é viver reagindo às urgências sem um diagnóstico claro do negócio. É assim que decisões pequenas se transformam em grandes prejuízos.",
     "fecho": "Decidir sem clareza é apostar no escuro."
   },
 
   "autoridade": {
     "eyebrow": "Quem facilita o programa",
-    "titulo": "26 anos operando empresa — não ensinando de fora",
+    "titulo": "26 anos operando empresa, não ensinando de fora",
     "stats": [
       { "numero": "3", "label": "turmas entregues" },
       { "numero": "100+", "label": "empresas atendidas" },
@@ -61,15 +62,15 @@
       "Em 2014, entrei na Depyl Action como consultora. Entreguei resultado — e fui convidada a me tornar sócia. Fiquei até 2022. Sei exatamente o que é ser chamada porque o negócio estava travado e identificar onde estava o problema.",
       "Antes disso, 9 anos como gerente de loja — franquias Lilica & Tigor, Imaginarium, hotel, lingerie. Formação completa pelo Grupo Friedmann, referência mundial em varejo. Desde 2015, consultora estratégica para mais de 100 empresas em todo o Brasil."
     ],
-    "destaque": "Não aprendi estratégia em livro. Aprendi fechando caixa, gerenciando equipe e respondendo por meta durante 26 anos.",
+    "destaque": "Não aprendi estratégia só em livro e teoria. Aprendi fechando caixa, gerenciando equipe e respondendo por metas durante 26 anos.",
     "redes_sociais": {
       "instagram": "Instagram",
       "linkedin": "LinkedIn"
     },
-    "escassez": "TURMA 4 — Apenas 10 vagas. Início julho 2026. Após preencher, fecha.",
-    "cta": "Já convencido? Não precisa esperar o fim da página.",
+    "escassez": "TURMA 4: Apenas 10 vagas. Não abrimos novas vagas durante a turma, após preenchidas, será preciso aguardar a próxima edição.",
+    "cta": "Pronto para começar? Dê o próximo passo agora mesmo",
     "cta_botao": "Quero garantir minha vaga na Turma 4",
-    "nota_cta": "Acesso confirmado imediatamente · Vagas limitadas a 10 empresários"
+    "nota_cta": " Vagas limitadas a 10 empresárias (os)"
   },
 
   "metodo": {
