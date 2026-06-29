@@ -35,9 +35,9 @@
     "eyebrow": "Você se reconhece aqui?",
     "titulo": "Não falta esforço. Falta clareza sobre o que decidir, o que priorizar e o que parar de fazer.",
     "lista": [
-      "Você toma decisão o dia inteiro — mas no improviso, sem critério claro",
+      "Você toma decisão o dia inteiro, mas no improviso, sem critério claro",
       "Tem muito para fazer e nunca sabe o que priorizar de verdade",
-      "O negócio cresce, mas a confusão cresce junto — mais movimento, pouco avanço real",
+      "O negócio cresce, mas a confusão cresce junto; mais movimento, pouco avanço real",
       "Todo ano você recomeça com os mesmos problemas porque as decisões também se repetem"
     ],
     "cta": "Entrar no grupo VIP do WhatsApp",
@@ -182,14 +182,13 @@
     "titulo": "O que diz quem participou das turmas anteriores",
     "escassez": "Turma 4 com apenas 10 vagas. Se você ficar de fora, precisará entrar na lista de espera da próxima edição.",
     "cta_titulo": "Junte-se às empresárias que já decidiram crescer com estrutura.",
-    "cta_botao": "Quero minha vaga na Turma 4 — Julho",
-    "nota_cta": "Não há reserva de vaga."
+    "cta_botao": "Quero minha vaga na Turma 4"
   },
 
   "investimento": {
     "eyebrow": "Investimento",
     "titulo": "Quanto custa o Planejar para Lucrar?",
-    "comparativo": "Uma consultoria individual com a Elis custa R$18.000. O Planejar para Lucrar entrega 4 encontros ao vivo — 3 em grupo e 1 individual exclusivo — pelo valor de:",
+    "comparativo": "Uma consultoria individual com a Elis custa R$18.000. O Planejar para Lucrar entrega 4 encontros ao vivo: 3 em grupo e 1 individual exclusivo, pelo valor de:",
     "opcoes": [
       {
         "tipo": "parcelado",
@@ -207,9 +206,9 @@
       }
     ],
     "rodape": "Consultoria individual com a Elis: R$18.000. Você acessa o mesmo nível de trabalho estratégico por R$2.000.",
-    "escassez": "Após completar as 10 vagas da Turma 4, as inscrições fecham e você deve entrar na lista de espera da próxima edição.",
-    "cta_botao": "Quero o Planejar para Lucrar - entrar agora",
-    "nota_cta": "Confirmação imediata · Início julho 2026 · Vagas limitadas a 10"
+    "escassez": "Após completar as 10 vagas da Turma 4, as inscrições fecham e você precisará entrar na lista de espera da próxima edição.",
+    "cta_botao": "Quero entrar agora",
+    "nota_cta": "Confirmação imediata através do pagamento"
   },
 
   "garantia": {
