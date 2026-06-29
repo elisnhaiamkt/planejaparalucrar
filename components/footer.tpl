@@ -1,4 +1,4 @@
-<!-- components/footer.html -->
+<!-- components/footer.tpl -->
 <footer class="footer">
   <div class="container">
     <div class="footer__topo">

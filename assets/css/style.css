@@ -89,6 +89,11 @@ h1, h2, h3, h4 {
   position: relative;
 }
 
+.secao,
+.hero {
+  scroll-margin-top: 5.5rem;
+}
+
 /* Fundos de seção — alternância proposital para alto contraste */
 .secao--escura      { background: var(--azul-escuro); color: var(--branco); }
 .secao--petroleo     { background: var(--azul-petroleo); color: var(--branco); }

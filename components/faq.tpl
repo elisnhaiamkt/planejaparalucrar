@@ -1,4 +1,4 @@
-<!-- components/faq.html
+<!-- components/faq.tpl
      Itens da lista vêm de assets/data/faq.json, montados por app.js -->
 <section class="secao secao--bege" id="faq">
   <div class="container">

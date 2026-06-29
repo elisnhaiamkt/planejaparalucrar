@@ -50,7 +50,7 @@ desaparece da página automaticamente.
 ## 2. Estrutura de arquivos
 
 ```
-landing-page/
+planejaparalucrar/
 │ index.html              ← esqueleto da página + SEO + cabeçalho fixo
 │
 ├── assets/
@@ -74,12 +74,12 @@ landing-page/
 │       config.json        ← links, vagas, rastreamento
 │
 ├── components/             ← pedaços de HTML que o app.js injeta na página
-│   hero.html              ← headline + contador de urgência + CTAs
-│   sections.html          ← dores, autoridade (foto + redes sociais),
+│   hero.tpl               ← headline + contador de urgência + CTAs
+│   sections.tpl           ← dores, autoridade (foto + redes sociais),
 │                             método, transformação, para quem (em grupos),
-│                             depoimentos (com avatar), investimento, garantia
-│   faq.html               ← FAQ + CTA final (com 2º contador)
-│   footer.html
+│   conversion.tpl         ← depoimentos (com avatar), investimento, garantia
+│   faq.tpl                ← FAQ + CTA final (com 2º contador)
+│   footer.tpl
 │
 └── README.md               ← este arquivo
 ```

@@ -1,4 +1,4 @@
-<!-- components/hero.html
+<!-- components/hero.tpl
      Preenchido por app.js a partir de assets/data/content.json (chave "hero") -->
 <section class="hero secao--escura" id="hero">
   <div class="container hero__interno">

@@ -23,7 +23,7 @@
   const CAMINHO_COMPONENTES = "components/";
 
   /* IDs das seções, na ordem em que aparecem no menu (content.header.nav) */
-  const IDS_MENU = ["metodo", "autoridade", "depoimentos", "garantia", "investimento", "faq"];
+  const IDS_MENU = ["metodo", "autoridade", "depoimentos", "investimento", "garantia", "faq"];
 
   /* ---------------------------------------------------------------------
    * 1. CARREGAMENTO DE COMPONENTES E DADOS
@@ -52,10 +52,11 @@
     // Componentes e dados podem ser buscados em paralelo
     const [, dados] = await Promise.all([
       Promise.all([
-        carregarParcial("#mount-hero", "hero.html"),
-        carregarParcial("#mount-sections", "sections.html"),
-        carregarParcial("#mount-faq", "faq.html"),
-        carregarParcial("#mount-footer", "footer.html"),
+        carregarParcial("#mount-hero", "hero.tpl"),
+        carregarParcial("#mount-sections", "sections.tpl"),
+        carregarParcial("#mount-conversion", "conversion.tpl"),
+        carregarParcial("#mount-faq", "faq.tpl"),
+        carregarParcial("#mount-footer", "footer.tpl"),
       ]),
       Promise.all([
         carregarJSON("content.json"),
@@ -102,6 +103,8 @@
     if (typeof window.observarRevelacoes === "function") {
       window.observarRevelacoes();
     }
+
+    rolarParaHashAtual();
   }
 
   /* ---------- Textos simples [data-bind] ---------- */
@@ -592,12 +595,26 @@
     aoRolar();
   }
 
+  function rolarParaHashAtual() {
+    const hash = window.location.hash;
+    if (!hash) return;
+
+    const id = decodeURIComponent(hash.slice(1));
+    const alvo = document.getElementById(id);
+    if (!alvo) return;
+
+    window.requestAnimationFrame(() => {
+      alvo.scrollIntoView({ block: "start" });
+    });
+  }
+
   /* ---------------------------------------------------------------------
    * INICIALIZAÇÃO
    * ------------------------------------------------------------------- */
 
   document.addEventListener("DOMContentLoaded", () => {
     ligarHeaderRolagem();
+    window.addEventListener("hashchange", rolarParaHashAtual);
     iniciar().catch((erro) => console.error("Erro ao montar a página:", erro));
   });
 })();
