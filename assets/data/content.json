@@ -41,7 +41,7 @@
       "Todo ano você recomeça com os mesmos problemas porque as decisões também se repetem"
     ],
     "cta": "Entrar no grupo VIP do WhatsApp",
-    "cta_checkout": "garantir minha vaga agora"
+    "cta_checkout": "Garantir minha vaga agora"
   },
 
   "problema": {
@@ -69,9 +69,9 @@
       "linkedin": "LinkedIn"
     },
     "escassez": "TURMA 4: Apenas 10 vagas. Não abrimos novas vagas durante a turma, após preenchidas, será preciso aguardar a próxima edição.",
-    "cta": "Pronto para começar? Dê o próximo passo agora mesmo",
+    "cta": "Pronta para começar? Dê o próximo passo agora mesmo",
     "cta_botao": "Quero garantir minha vaga na Turma 4",
-    "nota_cta": " Vagas limitadas a 10 empresárias (os)"
+    "nota_cta": " Há somente 10 vagas"
   },
 
   "metodo": {
@@ -163,27 +163,27 @@
     "grupos": [
       {
         "titulo": "Se você decide no improviso",
-        "texto": "Você toma decisão no improviso porque nunca tem clareza do que priorizar — e sente que o negócio vive em modo reativo, sem tempo para pensar no amanhã."
+        "texto": "Você toma decisão no improviso porque nunca tem clareza do que priorizar, e sente que o negócio vive em modo reativo, sem tempo para pensar no amanhã."
       },
       {
         "titulo": "Se o negócio depende demais de você",
-        "texto": "Sua empresa não anda sem você no centro de tudo — e você sabe que isso é um risco, não um motivo de orgulho."
+        "texto": "Sua empresa não anda sem você no centro de tudo e você sabe que isso é um risco, não um motivo de orgulho."
       },
       {
-        "titulo": "Se você já tentou sozinho",
+        "titulo": "Se você já tentou sozinha",
         "texto": "Você já tentou planejar por conta própria e o plano não saiu do papel. Você quer alguém de fora, com experiência real, enxergando o que você não consegue mais ver."
       }
     ],
-    "rodape": "Grupo de até 10 empresários. Você não é só mais um na sala."
+    "rodape": "Grupo de até 10 empresárias (os). Você não é só mais uma na sala."
   },
 
   "provas_sociais": {
     "eyebrow": "Quem já passou pelo programa",
-    "titulo": "O que dizem os empresários das turmas anteriores",
-    "escassez": "Turma 4 — apenas 10 vagas. Quando fechar, fecha. Próxima turma sem data definida.",
+    "titulo": "O que diz quem participou das turmas anteriores",
+    "escassez": "Turma 4 com apenas 10 vagas. Se você ficar de fora, precisará entrar na lista de espera da próxima edição.",
     "cta_titulo": "Junte-se às empresárias que já decidiram crescer com estrutura.",
     "cta_botao": "Quero minha vaga na Turma 4 — Julho",
-    "nota_cta": "Vagas limitadas · Confirmação imediata após pagamento"
+    "nota_cta": "Não há reserva de vaga."
   },
 
   "investimento": {
@@ -207,19 +207,19 @@
       }
     ],
     "rodape": "Consultoria individual com a Elis: R$18.000. Você acessa o mesmo nível de trabalho estratégico por R$2.000.",
-    "escassez": "Após completar as 10 vagas da Turma 4, inscrições fecham. Próxima turma sem data.",
-    "cta_botao": "Quero o Planejar para Lucrar — entrar agora",
+    "escassez": "Após completar as 10 vagas da Turma 4, as inscrições fecham e você deve entrar na lista de espera da próxima edição.",
+    "cta_botao": "Quero o Planejar para Lucrar - entrar agora",
     "nota_cta": "Confirmação imediata · Início julho 2026 · Vagas limitadas a 10"
   },
 
   "garantia": {
     "eyebrow": "Garantia",
     "titulo": "Risco zero para você decidir",
-    "texto": "Se você participar do Encontro 01 e sentir que o Planejar para Lucrar não é para o seu momento, é só avisar a equipe dentro do prazo de garantia — seu dinheiro volta integralmente, sem perguntas, sem burocracia.",
+    "texto": "Ao adquirir o Planejar para Lucrar, você conta com 7 dias de garantia. Se, dentro desse período, entender que o programa não é para o seu momento, basta solicitar o reembolso pela Hotmart.",
     "selo_label": "dias de garantia incondicional",
     "itens": [
       "Pedido simples, direto com a equipe",
-      "Reembolso integral, sem letra pequena",
+      "Reembolso integral dentro do prazo",
       "Sua vaga libera para outro empresário da lista de espera"
     ],
     "cta_botao": "Quero garantir minha vaga com risco zero",
