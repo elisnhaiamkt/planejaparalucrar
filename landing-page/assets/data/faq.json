@@ -1,0 +1,26 @@
+{
+  "_instrucoes": "Cada pergunta é um objeto com 'pergunta' e 'resposta'. Para adicionar uma nova, copie um bloco inteiro (entre as chaves { }) e cole antes do colchete final, separando com vírgula.",
+
+  "perguntas": [
+    {
+      "pergunta": "É online — funciona mesmo?",
+      "resposta": "Os 3 encontros em grupo e o individual são ao vivo, via Google Meet ou Zoom. Você interage, faz perguntas e trabalha o seu negócio em tempo real — não é aula gravada para assistir quando der."
+    },
+    {
+      "pergunta": "Funciona para qualquer tipo de negócio?",
+      "resposta": "As turmas anteriores tiveram agências, clínicas, designers, escritórios e comércio. O método parte do diagnóstico do seu negócio específico — não de uma fórmula genérica."
+    },
+    {
+      "pergunta": "Quando são os encontros?",
+      "resposta": "As datas exatas da Turma 4 são enviadas após a confirmação da inscrição. Os encontros acontecem em julho de 2026, com horários definidos em comum acordo com o grupo."
+    },
+    {
+      "pergunta": "Posso participar se sou de outra cidade?",
+      "resposta": "O programa é 100% online. Já atendemos empresários de todo o Brasil. O encontro individual também é feito online."
+    },
+    {
+      "pergunta": "E se eu não puder em algum encontro?",
+      "resposta": "Os encontros são gravados e disponibilizados para os participantes. O encontro individual é agendado em horário combinado com você."
+    }
+  ]
+}

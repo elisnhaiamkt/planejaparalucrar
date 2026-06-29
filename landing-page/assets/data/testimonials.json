@@ -1,0 +1,24 @@
+{
+  "_instrucoes": "Cada depoimento é um objeto com texto, nome, cargo/cidade e foto. Para adicionar um novo, copie um bloco inteiro (entre as chaves { }) e cole antes do colchete final, separando com vírgula. Se não tiver a foto ainda, deixe o caminho como está — aparece um círculo com a inicial do nome no lugar.",
+
+  "depoimentos": [
+    {
+      "texto": "Participei da consultoria da Elis e foi transformador. Ela tem uma capacidade única de enxergar o que está travando o negócio — coisas que eu não conseguia mais ver porque estava dentro há tempo demais. Saí com um plano real, não com motivação vazia.",
+      "nome": "Dra. Daiani",
+      "cargo": "Empresária — Joinville/SC",
+      "foto": "assets/images/depoimentos/daiani.jpg"
+    },
+    {
+      "texto": "A Elis fala umas coisas que você fala: 'eu não pensei nisso!' Caiu a ficha. Com pouco tempo de atendimento ela já me deu direcionamento. Eu estava perdida sobre para onde ir — e ela, com o olhar holístico dela, já chegou chegando.",
+      "nome": "Cris Menchon",
+      "cargo": "Empresária",
+      "foto": "assets/images/depoimentos/cris.jpg"
+    },
+    {
+      "texto": "Foram dias que transformaram minha visão como negócio. Coisas que estavam adormecidas dentro de mim. A consultoria online é um gostinho — da completa que ela entrega. Você é uma mulher excepcional não apenas como estrategista, mas como exemplo.",
+      "nome": "Tali Vidal",
+      "cargo": "Empresária",
+      "foto": "assets/images/depoimentos/tali.jpg"
+    }
+  ]
+}
