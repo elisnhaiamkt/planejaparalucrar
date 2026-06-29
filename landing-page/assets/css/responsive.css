@@ -51,10 +51,12 @@
 
   /* Autoridade: foto + título/stats + bio, três colunas */
   .grid-autoridade {
-    grid-template-columns: 0.62fr 0.85fr 1.1fr;
+    grid-template-columns: minmax(320px, 0.85fr) 1.15fr;
     align-items: start;
     gap: var(--space-xl);
   }
+  .autoridade__foto-coluna { grid-row: 1 / span 2; }
+  .autoridade__foto { min-height: 560px; }
   .stats-autoridade { margin: 0 0 var(--space-lg); }
 
   /* Garantia: selo ao lado do texto */

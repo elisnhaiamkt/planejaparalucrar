@@ -493,9 +493,24 @@
       return;
     }
 
-    const dataLimite = new Date(configContador.data_limite).getTime();
+    function obterDataLimiteAtiva() {
+      const dataFinal = new Date(configContador.data_limite).getTime();
+      if (configContador.modo !== "semanal_ate_data_limite") return dataFinal;
+
+      const dataInicio = new Date(configContador.data_inicio).getTime();
+      const janelaDias = Number(configContador.janela_dias || 7);
+      const janelaMs = janelaDias * 24 * 60 * 60 * 1000;
+      const agora = Date.now();
+
+      if (isNaN(dataInicio) || isNaN(dataFinal) || janelaMs <= 0) return dataFinal;
+      if (agora < dataInicio) return Math.min(dataInicio + janelaMs, dataFinal);
+
+      const ciclosPassados = Math.floor((agora - dataInicio) / janelaMs) + 1;
+      return Math.min(dataInicio + ciclosPassados * janelaMs, dataFinal);
+    }
 
     function atualizar() {
+      const dataLimite = obterDataLimiteAtiva();
       const agora = Date.now();
       const restante = dataLimite - agora;
 

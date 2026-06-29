@@ -33,7 +33,10 @@
   "contador": {
     "_instrucoes": "ativo: true mostra o contador. data_limite precisa estar no formato AAAA-MM-DDTHH:MM:SS-03:00 (horário de Brasília). Troque para a data real de fechamento das inscrições da Turma 4 antes de publicar — o valor abaixo é um EXEMPLO.",
     "ativo": true,
-    "data_limite": "2026-07-06T23:59:59-03:00"
+    "modo": "semanal_ate_data_limite",
+    "data_inicio": "2026-06-26T00:00:00-03:00",
+    "data_limite": "2026-07-29T23:59:59-03:00",
+    "janela_dias": 7
   },
 
   "garantia": {

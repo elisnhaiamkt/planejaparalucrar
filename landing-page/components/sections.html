@@ -6,13 +6,19 @@
 <!-- 2. IDENTIFICAÇÃO (DORES) -->
 <section class="secao secao--petroleo" id="dores">
   <div class="container dores__interno">
-    <div>
+    <div class="dores__lista-coluna">
       <span class="eyebrow" data-bind="dores.eyebrow"></span>
-      <h2 class="titulo-secao" data-bind="dores.titulo"></h2>
-      <a class="btn btn--secundario revelar" data-cta="grupo-dores" data-track="cta_grupo_whatsapp"
-         href="#" data-bind="dores.cta"></a>
+      <ul class="lista-dores" id="lista-dores"></ul>
     </div>
-    <ul class="lista-dores" id="lista-dores"></ul>
+    <div class="dores__destaque">
+      <h2 class="titulo-secao" data-bind="dores.titulo"></h2>
+      <div class="grupo-cta">
+        <a class="btn btn--secundario revelar" data-cta="grupo-dores" data-track="cta_grupo_whatsapp"
+           href="#" data-bind="dores.cta"></a>
+        <a class="btn btn--primario revelar" data-cta="checkout-dores" data-track="cta_checkout"
+           href="#" data-bind="dores.cta_checkout"></a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -169,6 +175,7 @@
     <p class="comparativo-investimento" data-bind="investimento.comparativo"></p>
 
     <div class="grid-investimento" id="grid-investimento"></div>
+    <p class="investimento__rodape" data-bind="investimento.rodape"></p>
 
     <div class="box-escassez" data-bind="investimento.escassez" style="text-align:left; max-width: 560px; margin: var(--space-lg) auto;"></div>
 

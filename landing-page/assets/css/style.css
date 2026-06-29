@@ -189,9 +189,15 @@ h1, h2, h3, h4 {
   color: var(--cinza-azulado);
   margin-top: var(--space-xs);
   letter-spacing: 0.02em;
+  max-width: max-content;
+  text-align: center;
 }
 .secao--escura .nota-cta,
 .secao--petroleo .nota-cta { color: #9FB3BB; }
+.grupo-cta + .nota-cta {
+  margin-left: auto;
+  margin-right: auto;
+}
 
 /* ---------- ESCASSEZ / TARJA ---------- */
 .tarja {
@@ -303,7 +309,18 @@ h1, h2, h3, h4 {
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
-  margin: var(--space-lg) 0;
+  margin: var(--space-md) 0 0;
+}
+.dores__destaque {
+  margin-top: var(--space-lg);
+}
+.dores__destaque .titulo-secao {
+  color: var(--branco);
+  margin-bottom: 0;
+}
+.dores__destaque .grupo-cta {
+  align-items: flex-start;
+  flex-direction: column;
 }
 .item-dor {
   display: flex;
@@ -335,7 +352,8 @@ h1, h2, h3, h4 {
 .bloco-citacao {
   max-width: 52ch;
   margin: 0 auto;
-  text-align: center;
+  text-align: justify;
+  text-align-last: left;
 }
 .bloco-citacao__texto {
   font-family: var(--fonte-titulo);
@@ -593,28 +611,30 @@ h1, h2, h3, h4 {
   border-radius: var(--raio);
   padding: var(--space-md);
   box-shadow: 0 16px 36px -20px rgba(23, 57, 74, 0.2);
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 82px 1fr;
   gap: var(--space-sm);
+  align-items: start;
 }
 .depoimento__aspas {
   font-family: var(--fonte-titulo);
   font-size: 2rem;
   color: var(--terracota);
   line-height: 1;
+  grid-column: 2;
 }
 .depoimento__texto {
   color: var(--azul-escuro);
   font-size: 0.98rem;
-  flex: 1;
+  grid-column: 2;
 }
 .depoimento__autor {
   font-family: var(--fonte-titulo);
   font-weight: 700;
   font-size: 0.9rem;
   color: var(--azul-petroleo);
-  border-top: 1px solid rgba(23,57,74,0.1);
-  padding-top: var(--space-sm);
+  grid-column: 1;
+  grid-row: 1 / span 2;
 }
 .depoimento__cargo {
   display: block;
@@ -662,6 +682,13 @@ h1, h2, h3, h4 {
   max-width: 56ch;
   color: #D8E2E5;
   margin-bottom: var(--space-lg);
+}
+.investimento__rodape {
+  max-width: 52ch;
+  margin: calc(var(--space-md) * -0.35) auto var(--space-lg);
+  color: #D8E2E5;
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
 }
 
 /* ==========================================================================
@@ -875,7 +902,7 @@ h1, h2, h3, h4 {
 }
 .autoridade__foto {
   width: 100%;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 3 / 4;
   border-radius: var(--raio);
   overflow: hidden;
   background: linear-gradient(160deg, var(--azul-petroleo), var(--azul-petroleo-2));
@@ -883,6 +910,7 @@ h1, h2, h3, h4 {
   align-items: center;
   justify-content: center;
   position: relative;
+  min-height: 360px;
 }
 .autoridade__foto img {
   width: 100%;
@@ -984,14 +1012,15 @@ h1, h2, h3, h4 {
    AVATAR DE DEPOIMENTO (foto ou iniciais)
    ========================================================================== */
 .depoimento__cabeca {
-  display: flex;
-  align-items: center;
+  display: grid;
   gap: 0.7rem;
+  justify-items: center;
+  text-align: center;
 }
 .depoimento__avatar {
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
+  width: 74px;
+  height: 74px;
+  border-radius: var(--raio);
   flex: none;
   overflow: hidden;
   background: var(--azul-petroleo);
@@ -1001,12 +1030,22 @@ h1, h2, h3, h4 {
   color: var(--branco);
   font-family: var(--fonte-titulo);
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 1.15rem;
 }
 .depoimento__avatar img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+@media (max-width: 420px) {
+  .depoimento {
+    grid-template-columns: 64px 1fr;
+  }
+  .depoimento__avatar {
+    width: 60px;
+    height: 60px;
+  }
 }
 
 /* ==========================================================================
