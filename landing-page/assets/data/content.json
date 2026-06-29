@@ -25,8 +25,8 @@
   },
 
   "contador": {
-    "frase": "Só faltam",
-    "frase_fecho": "para você decidir resolver seus problemas de vez.",
+    "frase": "As vagas limitadas para esta turma encerram em",
+    "frase_fecho": "Não deixe o crescimento da sua empresa para depois.",
     "labels": { "dias": "dias", "horas": "horas", "min": "min", "seg": "seg" },
     "expirado": "As inscrições da Turma 4 foram encerradas. Deixe seu contato para ser avisado da próxima turma."
   },
@@ -231,8 +231,8 @@
   },
 
   "cta_final": {
-    "titulo": "Seu negócio merece mais do que esforço.",
-    "subtitulo": "Merece estrutura. Merece clareza. Merece um plano possível.",
+    "titulo": "O próximo nível do seu negócio está a uma decisão de distância.",
+    "subtitulo": "A estrutura e a clareza que você busca estão aqui.",
     "escassez": "Turma 4 · Julho 2026 · Apenas 10 vagas",
     "cta_botao": "Quero minha vaga no Planejar para Lucrar",
     "cta_secundario": "Entrar no grupo VIP do WhatsApp",
