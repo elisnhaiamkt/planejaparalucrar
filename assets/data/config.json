@@ -1,0 +1,54 @@
+{
+  "_instrucoes": "Edite apenas os VALORES (depois dos dois pontos). Não altere os nomes das chaves.",
+
+  "produto": {
+    "nome": "Planejar para Lucrar",
+    "turma": "Turma 4",
+    "periodo": "Julho 2026",
+    "vagas": 10
+  },
+
+  "links": {
+    "checkout_hotmart": "https://pay.hotmart.com/SUBSTITUA-PELO-LINK-DO-CHECKOUT",
+    "whatsapp_grupo_vip": "https://chat.whatsapp.com/SUBSTITUA-PELO-LINK-DO-GRUPO",
+    "whatsapp_equipe": "https://wa.me/5500000000000?text=Ol%C3%A1!%20Tenho%20uma%20d%C3%BAvida%20sobre%20o%20Planejar%20para%20Lucrar%20-%20Turma%204",
+    "instagram": "https://www.instagram.com/elisnhaia",
+    "linkedin": "https://www.linkedin.com/in/SUBSTITUA-PELO-PERFIL-DA-ELIS",
+    "site": "https://www.elisnhaia.com.br",
+    "email": "elisnhaiaconsultoria@gmail.com"
+  },
+
+  "rastreamento": {
+    "_instrucoes": "Cole aqui os IDs reais quando o tráfego pago for configurado. Os trechos de código já estão preparados em app.js (procure por 'gtag' e 'fbq').",
+    "google_analytics_id": "",
+    "google_ads_id": "",
+    "meta_pixel_id": ""
+  },
+
+  "exibicao": {
+    "mostrar_contagem_vagas": false,
+    "vagas_restantes": 10
+  },
+
+  "contador": {
+    "_instrucoes": "ativo: true mostra o contador. data_limite precisa estar no formato AAAA-MM-DDTHH:MM:SS-03:00 (horário de Brasília). Troque para a data real de fechamento das inscrições da Turma 4 antes de publicar — o valor abaixo é um EXEMPLO.",
+    "ativo": true,
+    "data_limite": "2026-07-06T23:59:59-03:00"
+  },
+
+  "garantia": {
+    "_instrucoes": "ativo: true mostra o selo de garantia na página. dias é o número de dias da garantia incondicional.",
+    "ativo": true,
+    "dias": 7
+  },
+
+  "imagens": {
+    "_instrucoes": "Troque os caminhos abaixo pelos arquivos reais depois de salvá-los dentro de assets/images/. Pode usar .jpg, .jpeg, .png ou .webp.",
+    "autoridade": "assets/images/autoridade/elis-nhaia.jpg",
+    "depoimentos": {
+      "daiani": "assets/images/depoimentos/daiani.jpg",
+      "cris": "assets/images/depoimentos/cris.jpg",
+      "tali": "assets/images/depoimentos/tali.jpg"
+    }
+  }
+}

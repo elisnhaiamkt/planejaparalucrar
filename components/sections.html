@@ -1,0 +1,206 @@
+<!-- components/sections.html
+     Textos escalares: data-bind="chave.subchave" (lido de content.json)
+     Listas (depoimentos, etapas, itens): renderizadas em JS dentro de
+     contêineres marcados com id, a partir de content.json / testimonials.json -->
+
+<!-- 2. IDENTIFICAÇÃO (DORES) -->
+<section class="secao secao--petroleo" id="dores">
+  <div class="container dores__interno">
+    <div>
+      <span class="eyebrow" data-bind="dores.eyebrow"></span>
+      <h2 class="titulo-secao" data-bind="dores.titulo"></h2>
+      <a class="btn btn--secundario revelar" data-cta="grupo-dores" data-track="cta_grupo_whatsapp"
+         href="#" data-bind="dores.cta"></a>
+    </div>
+    <ul class="lista-dores" id="lista-dores"></ul>
+  </div>
+</section>
+
+<!-- 3. O PROBLEMA REAL -->
+<section class="secao secao--bege secao--centrada" id="problema">
+  <div class="container">
+    <span class="eyebrow" data-bind="problema.eyebrow"></span>
+    <div class="bloco-citacao revelar">
+      <p class="bloco-citacao__texto" data-bind="problema.citacao1"></p>
+      <p class="bloco-citacao__texto" data-bind="problema.citacao2"></p>
+      <p class="bloco-citacao__fecho" data-bind="problema.fecho"></p>
+    </div>
+  </div>
+</section>
+
+<!-- 4. QUEM É A ELIS -->
+<section class="secao secao--escura" id="autoridade">
+  <div class="container">
+    <div class="grid-autoridade">
+      <div class="autoridade__foto-coluna">
+        <div class="autoridade__foto">
+          <!-- FOTO: autoridade — troque o placeholder pela foto real da Elis.
+               Caminho do arquivo configurado em assets/data/config.json > imagens.autoridade -->
+          <img src="" alt="Elis Nhaia, consultora estratégica" id="img-autoridade" loading="lazy" style="display:none;">
+          <div class="autoridade__foto-placeholder" id="placeholder-autoridade">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+              <circle cx="12" cy="8" r="3.6"></circle>
+              <path d="M4.5 20c0-4 3.4-6.5 7.5-6.5s7.5 2.5 7.5 6.5"></path>
+            </svg>
+            <span>Foto da Elis<br>(adicionar em assets/images/autoridade/)</span>
+          </div>
+        </div>
+        <div class="redes-sociais">
+          <a class="rede-social" data-link="instagram" href="#" target="_blank" rel="noopener" aria-label="Instagram da Elis Nhaia">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+              <circle cx="12" cy="12" r="3.6"></circle>
+              <circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none"></circle>
+            </svg>
+            <span data-bind="autoridade.redes_sociais.instagram"></span>
+          </a>
+          <a class="rede-social" data-link="linkedin" href="#" target="_blank" rel="noopener" aria-label="LinkedIn da Elis Nhaia">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M4.98 3.5C4.98 4.6 4.1 5.5 3 5.5S1 4.6 1 3.5 1.9 1.5 3 1.5s1.98.9 1.98 2zM1.4 8.2h3.2V23H1.4V8.2zM8.6 8.2h3.06v2.02h.04c.43-.8 1.5-1.65 3.08-1.65 3.3 0 3.9 2.16 3.9 4.98V23h-3.2v-6.6c0-1.57-.03-3.6-2.2-3.6-2.2 0-2.54 1.72-2.54 3.48V23H8.6V8.2z"></path>
+            </svg>
+            <span data-bind="autoridade.redes_sociais.linkedin"></span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <span class="eyebrow" data-bind="autoridade.eyebrow"></span>
+        <h2 class="titulo-secao" data-bind="autoridade.titulo"></h2>
+        <div class="stats-autoridade" id="stats-autoridade"></div>
+      </div>
+      <div>
+        <div id="autoridade-paragrafos"></div>
+        <p class="autoridade__destaque" data-bind="autoridade.destaque"></p>
+
+        <div class="box-escassez" data-bind="autoridade.escassez"></div>
+        <p class="texto-lead" data-bind="autoridade.cta" style="margin-bottom: var(--space-md);"></p>
+
+        <div class="grupo-cta">
+          <a class="btn btn--primario btn--grande" data-cta="checkout-autoridade"
+             data-track="cta_checkout" href="#" data-bind="autoridade.cta_botao"></a>
+        </div>
+        <p class="nota-cta" data-bind="autoridade.nota_cta"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 + 6. MÉTODO (4 encontros + entregas) -->
+<section class="secao secao--bege" id="metodo">
+  <div class="container">
+    <div class="metodo__intro revelar">
+      <span class="eyebrow" data-bind="metodo.eyebrow"></span>
+      <h2 class="titulo-secao" data-bind="metodo.titulo"></h2>
+      <p class="texto-lead" data-bind="metodo.intro"></p>
+    </div>
+
+    <div class="timeline" id="timeline-metodo"></div>
+
+    <div class="grupo-cta" style="margin-top: var(--space-xl);">
+      <a class="btn btn--primario btn--grande" data-cta="checkout-metodo"
+         data-track="cta_checkout" href="#" data-bind="metodo.cta"></a>
+    </div>
+  </div>
+</section>
+
+<!-- 7. TRANSFORMAÇÃO -->
+<section class="secao secao--escura secao--centrada" id="transformacao">
+  <div class="container">
+    <span class="eyebrow" data-bind="transformacao.eyebrow"></span>
+    <h2 class="titulo-secao" data-bind="transformacao.titulo"></h2>
+
+    <div class="transformacao-grid">
+      <div class="coluna-transf coluna-transf--antes">
+        <span class="coluna-transf__label" data-bind="transformacao.antes.label"></span>
+        <ul id="transformacao-antes"></ul>
+      </div>
+      <div class="coluna-transf coluna-transf--depois">
+        <span class="coluna-transf__label" data-bind="transformacao.depois.label"></span>
+        <ul id="transformacao-depois"></ul>
+      </div>
+    </div>
+
+    <p class="texto-lead" style="margin: var(--space-lg) auto 0; text-align:center;" data-bind="transformacao.cta_titulo"></p>
+    <div class="grupo-cta" style="justify-content:center;">
+      <a class="btn btn--whatsapp" data-cta="whatsapp-transformacao"
+         data-track="cta_whatsapp_equipe" href="#" data-bind="transformacao.cta_botao"></a>
+    </div>
+  </div>
+</section>
+
+<!-- 9. PARA QUEM É -->
+<section class="secao secao--petroleo" id="para-quem">
+  <div class="container">
+    <span class="eyebrow" data-bind="para_quem.eyebrow"></span>
+    <h2 class="titulo-secao" data-bind="para_quem.titulo"></h2>
+
+    <div class="grupos-paraquem" id="grupos-paraquem"></div>
+
+    <p class="rodape-secao" data-bind="para_quem.rodape"></p>
+  </div>
+</section>
+
+<!-- 8. PROVAS SOCIAIS -->
+<section class="secao secao--bege" id="depoimentos">
+  <div class="container">
+    <span class="eyebrow" data-bind="provas_sociais.eyebrow"></span>
+    <h2 class="titulo-secao" data-bind="provas_sociais.titulo"></h2>
+
+    <div class="grid-depoimentos" id="grid-depoimentos"></div>
+
+    <div class="box-escassez" data-bind="provas_sociais.escassez"></div>
+
+    <p class="texto-lead" data-bind="provas_sociais.cta_titulo" style="margin-bottom: var(--space-md);"></p>
+    <div class="grupo-cta">
+      <a class="btn btn--primario btn--grande" data-cta="checkout-depoimentos"
+         data-track="cta_checkout" href="#" data-bind="provas_sociais.cta_botao"></a>
+      <a class="btn btn--whatsapp" data-cta="whatsapp-depoimentos"
+         data-track="cta_whatsapp_equipe" href="#">Falar com a equipe</a>
+    </div>
+    <p class="nota-cta" data-bind="provas_sociais.nota_cta"></p>
+  </div>
+</section>
+
+<!-- 10. INVESTIMENTO -->
+<section class="secao secao--escura secao--centrada investimento" id="investimento">
+  <div class="container">
+    <span class="eyebrow" data-bind="investimento.eyebrow"></span>
+    <h2 class="titulo-secao" data-bind="investimento.titulo"></h2>
+    <p class="comparativo-investimento" data-bind="investimento.comparativo"></p>
+
+    <div class="grid-investimento" id="grid-investimento"></div>
+
+    <div class="box-escassez" data-bind="investimento.escassez" style="text-align:left; max-width: 560px; margin: var(--space-lg) auto;"></div>
+
+    <div class="grupo-cta">
+      <a class="btn btn--primario btn--grande" data-cta="checkout-investimento"
+         data-track="cta_checkout" href="#" data-bind="investimento.cta_botao"></a>
+    </div>
+    <p class="nota-cta" data-bind="investimento.nota_cta"></p>
+  </div>
+</section>
+
+<!-- GARANTIA -->
+<section class="secao secao--bege" id="garantia">
+  <div class="container">
+    <span class="eyebrow" data-bind="garantia.eyebrow"></span>
+    <h2 class="titulo-secao" data-bind="garantia.titulo"></h2>
+
+    <div class="garantia__grid">
+      <div class="selo-garantia">
+        <span class="selo-garantia__numero" id="garantia-dias"></span>
+        <span class="selo-garantia__label" data-bind="garantia.selo_label"></span>
+      </div>
+      <div>
+        <p class="texto-lead" data-bind="garantia.texto" style="margin-bottom: var(--space-md); color: var(--cinza-azulado);"></p>
+        <div class="garantia__lista" id="garantia-lista"></div>
+        <div class="grupo-cta">
+          <a class="btn btn--primario btn--grande" data-cta="checkout-garantia"
+             data-track="cta_checkout" href="#" data-bind="garantia.cta_botao"></a>
+          <a class="btn btn--whatsapp" data-cta="whatsapp-garantia"
+             data-track="cta_whatsapp_equipe" href="#" data-bind="garantia.cta_whatsapp"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
