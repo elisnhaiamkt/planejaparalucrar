@@ -25,7 +25,7 @@
   },
 
   "contador": {
-    "frase": "As vagas limitadas para esta turma encerram em",
+    "frase": "As vagas limitadas para esta turma encerram em:",
     "frase_fecho": "Não deixe o crescimento da sua empresa para depois.",
     "labels": { "dias": "dias", "horas": "horas", "min": "min", "seg": "seg" },
     "expirado": "As inscrições da Turma 4 foram encerradas. Deixe seu contato para ser avisado da próxima turma."
