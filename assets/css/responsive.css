@@ -14,6 +14,11 @@
   .barra-fixa-mobile .btn { font-size: 0.92rem; }
 }
 
+/* ---------- MOBILE/TABLET (< 1024px) ---------- */
+@media (max-width: 1023px) {
+  .hero::after { display: none; }
+}
+
 /* ---------- TABLET MAIOR (>= 760px) ---------- */
 @media (min-width: 760px) {
   .grid-depoimentos { grid-template-columns: repeat(2, 1fr); }
@@ -27,13 +32,33 @@
 
   /* Header completo */
   .header__nav {
+    position: static;
     display: flex;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
     gap: var(--space-md);
     font-size: 0.9rem;
     color: #C9D6DA;
   }
-  .header__nav a { transition: color var(--transicao); }
-  .header__nav a:hover { color: var(--branco); }
+  .header__nav.header__nav--aberta { display: flex; }
+  .header__nav a {
+    padding: 0;
+    border-radius: 0;
+    font-family: var(--fonte-corpo);
+    font-size: inherit;
+    font-weight: 400;
+    transition: color var(--transicao);
+  }
+  .header__nav a:hover,
+  .header__nav a:focus-visible {
+    background: transparent;
+    color: var(--branco);
+  }
+  .header__menu-toggle { display: none; }
   .header__cta { display: inline-flex; }
 
   /* Hero em duas colunas: texto + bloco de destaque lateral */

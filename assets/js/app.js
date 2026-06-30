@@ -94,6 +94,7 @@
     aplicarEscassez(config.exibicao, content);
     aplicarTokens(config);
     ligarRastreamento(config.rastreamento);
+    ligarMenuMobile();
     iniciarContador(config.contador, content.contador);
 
     document.title = content.hero.headline + " — " + content.marca.empresa;
@@ -145,6 +146,35 @@
   }
 
   /* ---------- Helpers de criação de elementos ---------- */
+
+  function ligarMenuMobile() {
+    const botao = document.querySelector("#header-menu-toggle");
+    const nav = document.querySelector("#header-nav");
+    if (!botao || !nav) return;
+
+    const definirMenuAberto = (aberto) => {
+      nav.classList.toggle("header__nav--aberta", aberto);
+      botao.setAttribute("aria-expanded", String(aberto));
+      botao.setAttribute("aria-label", aberto ? "Fechar menu" : "Abrir menu");
+    };
+
+    botao.addEventListener("click", () => {
+      definirMenuAberto(botao.getAttribute("aria-expanded") !== "true");
+    });
+
+    nav.addEventListener("click", (evento) => {
+      if (evento.target.closest("a")) definirMenuAberto(false);
+    });
+
+    document.addEventListener("click", (evento) => {
+      if (botao.contains(evento.target) || nav.contains(evento.target)) return;
+      definirMenuAberto(false);
+    });
+
+    document.addEventListener("keydown", (evento) => {
+      if (evento.key === "Escape") definirMenuAberto(false);
+    });
+  }
 
   function criarLi(texto) {
     const li = document.createElement("li");
