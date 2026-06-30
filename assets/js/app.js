@@ -428,6 +428,18 @@
    * ------------------------------------------------------------------- */
 
   function aplicarLinks(links) {
+    const montarLinkWhatsApp = (linkBase, mensagem) => {
+      if (!mensagem) return linkBase;
+      try {
+        const url = new URL(linkBase);
+        url.searchParams.set("text", mensagem);
+        return url.toString();
+      } catch (erro) {
+        console.warn("Link de WhatsApp inválido:", linkBase, erro);
+        return linkBase;
+      }
+    };
+
     document.querySelectorAll('[data-cta^="checkout-"]').forEach((el) => {
       el.href = links.checkout_hotmart;
       el.target = "_blank";
@@ -439,7 +451,7 @@
       el.rel = "noopener";
     });
     document.querySelectorAll('[data-cta^="whatsapp-"]').forEach((el) => {
-      el.href = links.whatsapp_equipe;
+      el.href = montarLinkWhatsApp(links.whatsapp_equipe, el.dataset.whatsappText);
       el.target = "_blank";
       el.rel = "noopener";
     });

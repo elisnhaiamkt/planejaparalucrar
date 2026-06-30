@@ -36,6 +36,10 @@
     <div class="grupo-cta">
       <a class="btn btn--primario btn--grande" data-cta="checkout-investimento"
          data-track="cta_checkout" href="#" data-bind="investimento.cta_botao"></a>
+      <a class="btn btn--whatsapp btn--grande" data-cta="whatsapp-pix-investimento"
+         data-track="cta_whatsapp_equipe" href="#"
+         data-whatsapp-text="Olá! Quero garantir minha vaga no Planejar para Lucrar - Turma 4 pagando via Pix com desconto."
+         data-bind="investimento.cta_pix_botao"></a>
     </div>
     <p class="nota-cta" data-bind="investimento.nota_cta"></p>
   </div>

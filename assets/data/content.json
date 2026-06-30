@@ -192,23 +192,24 @@
     "opcoes": [
       {
         "tipo": "parcelado",
-        "label": "Parcelado",
+        "label": "Parcelado na Hotmart",
         "valor": "12x de R$200",
-        "nota": "acesso confirmado imediatamente",
+        "nota": "checkout seguro para pagamento parcelado",
         "destaque": false
       },
       {
         "tipo": "vista",
-        "label": "À vista — melhor opção",
+        "label": "Pix à vista — melhor opção",
         "valor": "R$ 1.797",
-        "nota": "desconto de 10% · pagamento único",
+        "nota": "desconto de 10% · pagamento via Pix com a equipe",
         "destaque": true
       }
     ],
     "rodape": "Consultoria individual com a Elis: R$18.000. Você acessa o mesmo nível de trabalho estratégico por R$2.000.",
     "escassez": "Após completar as 10 vagas da Turma 4, as inscrições fecham e você precisará entrar na lista de espera da próxima edição.",
-    "cta_botao": "Quero entrar agora",
-    "nota_cta": "Confirmação imediata através do pagamento"
+    "cta_botao": "Pagar parcelado na Hotmart",
+    "cta_pix_botao": "Pagar via Pix com desconto",
+    "nota_cta": "Parcelamento pela Hotmart. Desconto à vista disponível via Pix com atendimento da equipe."
   },
 
   "garantia": {
