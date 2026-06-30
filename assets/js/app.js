@@ -428,6 +428,10 @@
    * ------------------------------------------------------------------- */
 
   function aplicarLinks(links) {
+    const mensagensWhatsApp = {
+      "whatsapp-pix-investimento": "Olá! Quero garantir minha vaga no Planejar para Lucrar - Turma 4 pagando via Pix com desconto.",
+    };
+
     const montarLinkWhatsApp = (linkBase, mensagem) => {
       if (!mensagem) return linkBase;
       try {
@@ -451,7 +455,9 @@
       el.rel = "noopener";
     });
     document.querySelectorAll('[data-cta^="whatsapp-"]').forEach((el) => {
-      el.href = montarLinkWhatsApp(links.whatsapp_equipe, el.dataset.whatsappText);
+      const idCta = el.getAttribute("data-cta");
+      const mensagem = mensagensWhatsApp[idCta] || el.dataset.whatsappText;
+      el.href = montarLinkWhatsApp(links.whatsapp_equipe, mensagem);
       el.target = "_blank";
       el.rel = "noopener";
     });
