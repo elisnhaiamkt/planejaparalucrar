@@ -8,11 +8,15 @@
   .grupo-cta { flex-direction: row; flex-wrap: wrap; }
   .grupo-cta .btn { flex: none; }
 
-  .grid-depoimentos { grid-template-columns: repeat(2, 1fr); }
   .transformacao-grid { grid-template-columns: repeat(2, 1fr); }
   .grid-investimento { grid-template-columns: repeat(2, 1fr); }
 
   .barra-fixa-mobile .btn { font-size: 0.92rem; }
+}
+
+/* ---------- TABLET MAIOR (>= 760px) ---------- */
+@media (min-width: 760px) {
+  .grid-depoimentos { grid-template-columns: repeat(2, 1fr); }
 }
 
 /* ---------- DESKTOP (>= 1024px) ---------- */
