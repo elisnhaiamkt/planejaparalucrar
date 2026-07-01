@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Elis Nhaia">
+  <rect width="64" height="64" rx="14" fill="#17394A"/>
+  <path d="M12 13h40v38H12z" fill="none" stroke="#D9783D" stroke-width="3"/>
+  <text x="32" y="39" text-anchor="middle" font-family="Montserrat, Arial, sans-serif" font-size="23" font-weight="800" fill="#F8EEE4">EN</text>
+  <path d="M20 47h24" stroke="#F8EEE4" stroke-width="3" stroke-linecap="round"/>
+</svg>

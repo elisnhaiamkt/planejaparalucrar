@@ -251,15 +251,19 @@
    */
   function carregarImagemComFallback(imgEl, placeholderEl, src) {
     if (!imgEl || !src) return;
-    imgEl.addEventListener("load", () => {
+    const mostrarImagem = () => {
       imgEl.style.display = "block";
       if (placeholderEl) placeholderEl.style.display = "none";
-    });
-    imgEl.addEventListener("error", () => {
+    };
+    const mostrarPlaceholder = () => {
       imgEl.style.display = "none";
       if (placeholderEl) placeholderEl.style.display = "flex";
-    });
+    };
+
+    imgEl.addEventListener("load", mostrarImagem);
+    imgEl.addEventListener("error", mostrarPlaceholder);
     imgEl.src = src;
+    if (imgEl.complete && imgEl.naturalWidth > 0) mostrarImagem();
   }
 
   function montarFotoAutoridade(caminhoFoto) {

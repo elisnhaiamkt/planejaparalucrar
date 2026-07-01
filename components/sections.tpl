@@ -42,7 +42,7 @@
         <div class="autoridade__foto">
           <!-- FOTO: autoridade — troque o placeholder pela foto real da Elis.
                Caminho do arquivo configurado em assets/data/config.json > imagens.autoridade -->
-          <img src="" alt="Elis Nhaia, consultora estratégica" id="img-autoridade" loading="lazy" style="display:none;">
+          <img src="assets/images/autoridade/elis-nhaia.jpg" alt="Elis Nhaia, consultora estratégica" id="img-autoridade" loading="lazy">
           <div class="autoridade__foto-placeholder" id="placeholder-autoridade">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
               <circle cx="12" cy="8" r="3.6"></circle>
