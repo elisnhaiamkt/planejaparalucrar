@@ -21,6 +21,34 @@
   </div>
 </section>
 
+<!-- 9. AVALIAÇÕES DO GOOGLE -->
+<section class="secao secao--bege avaliacoes-google" id="avaliacoes-google">
+  <div class="container">
+    <div class="avaliacoes-google__topo">
+      <div>
+        <span class="eyebrow" id="google-reviews-eyebrow"></span>
+        <h2 class="titulo-secao" id="google-reviews-titulo"></h2>
+        <p class="texto-lead" id="google-reviews-subtitulo"></p>
+      </div>
+      <div class="avaliacoes-google__resumo">
+        <span class="avaliacoes-google__empresa" id="google-reviews-empresa"></span>
+        <span class="avaliacoes-google__nota" id="google-reviews-nota"></span>
+        <span class="avaliacoes-google__estrelas" aria-hidden="true">★★★★★</span>
+        <span class="avaliacoes-google__total" id="google-reviews-total"></span>
+        <a class="avaliacoes-google__link" id="google-reviews-link" href="#" target="_blank" rel="noopener"></a>
+      </div>
+    </div>
+
+    <div class="avaliacoes-google__carrossel" aria-label="Avaliações do Google">
+      <button class="avaliacoes-google__nav avaliacoes-google__nav--anterior" type="button" aria-label="Avaliação anterior">‹</button>
+      <div class="avaliacoes-google__viewport" id="google-reviews-viewport">
+        <div class="avaliacoes-google__trilho" id="google-reviews-track"></div>
+      </div>
+      <button class="avaliacoes-google__nav avaliacoes-google__nav--proxima" type="button" aria-label="Próxima avaliação">›</button>
+    </div>
+  </div>
+</section>
+
 <!-- 10. INVESTIMENTO -->
 <section class="secao secao--escura secao--centrada investimento" id="investimento">
   <div class="container">

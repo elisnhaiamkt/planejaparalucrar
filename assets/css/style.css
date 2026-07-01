@@ -707,6 +707,220 @@ h1, h2, h3, h4 {
   color: var(--cinza-azulado);
   font-size: 0.84rem;
 }
+/* ==========================================================================
+   AVALIAÇÕES DO GOOGLE
+   ========================================================================== */
+.avaliacoes-google {
+  overflow: hidden;
+}
+.avaliacoes-google__topo {
+  display: grid;
+  gap: var(--space-md);
+  align-items: start;
+}
+.avaliacoes-google__topo .texto-lead {
+  color: var(--cinza-azulado);
+  margin-top: var(--space-sm);
+}
+.avaliacoes-google__resumo {
+  background: var(--branco);
+  border: 1px solid var(--linha-escura);
+  border-radius: var(--raio);
+  padding: var(--space-md);
+  box-shadow: 0 18px 38px -26px rgba(23, 57, 74, 0.42);
+}
+.avaliacoes-google__empresa {
+  display: block;
+  color: var(--azul-petroleo);
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+}
+.avaliacoes-google__nota {
+  color: var(--azul-escuro);
+  font-family: var(--fonte-titulo);
+  font-size: 2rem;
+  font-weight: 700;
+  margin-right: 0.45rem;
+  vertical-align: middle;
+}
+.avaliacoes-google__estrelas {
+  color: #F4B400;
+  letter-spacing: 0;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+.avaliacoes-google__total {
+  display: block;
+  color: var(--cinza-azulado);
+  font-size: 0.9rem;
+  margin: 0.25rem 0 0.75rem;
+}
+.avaliacoes-google__link {
+  display: inline-flex;
+  color: var(--terracota);
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+}
+.avaliacoes-google__link:hover,
+.avaliacoes-google__link:focus-visible {
+  text-decoration: underline;
+}
+.avaliacoes-google__carrossel {
+  position: relative;
+  margin-top: var(--space-lg);
+}
+.avaliacoes-google__viewport {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  padding: 0.35rem 0 var(--space-md);
+}
+.avaliacoes-google__viewport::-webkit-scrollbar {
+  display: none;
+}
+.avaliacoes-google__trilho {
+  display: flex;
+  gap: 1.1rem;
+}
+.google-review {
+  flex: 0 0 min(86vw, 340px);
+  scroll-snap-align: center;
+  background: var(--branco);
+  border: 1px solid rgba(23, 57, 74, 0.12);
+  border-radius: 8px;
+  box-shadow: 0 14px 34px -24px rgba(23, 57, 74, 0.45);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.google-review--destaque {
+  border-color: var(--terracota);
+  box-shadow: 0 20px 50px -22px rgba(217, 120, 61, 0.58);
+}
+.google-review__imagem {
+  background: #F6F8F9;
+  display: flex;
+  border-bottom: 1px solid var(--linha-escura);
+}
+.google-review__imagem img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+.google-review__conteudo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  padding: var(--space-md);
+  min-height: 100%;
+  flex: 1;
+}
+.google-review__cabecalho {
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  gap: 0.75rem;
+  align-items: center;
+}
+.google-review__avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #1A73E8;
+  color: var(--branco);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, sans-serif;
+  font-weight: 700;
+}
+.google-review__identidade {
+  min-width: 0;
+}
+.google-review__nome {
+  color: var(--azul-petroleo);
+  font-family: Arial, sans-serif;
+  font-size: 0.96rem;
+  font-weight: 700;
+  margin: 0 0 0.12rem;
+}
+.google-review__empresa {
+  color: var(--cinza-azulado);
+  font-size: 0.8rem;
+  min-height: 1em;
+}
+.google-review__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+}
+.google-review__estrelas {
+  color: #F4B400;
+  letter-spacing: 0;
+  line-height: 1;
+  white-space: nowrap;
+}
+.google-review__data {
+  color: var(--cinza-azulado);
+  font-size: 0.78rem;
+}
+.google-review__texto {
+  color: var(--azul-escuro);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+.google-review__origem {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--cinza-azulado);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+.google-review__origem:hover,
+.google-review__origem:focus-visible {
+  color: var(--terracota);
+}
+.google-review__g {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--branco);
+  color: #4285F4;
+  font-family: Arial, sans-serif;
+  font-weight: 700;
+  box-shadow: 0 6px 16px -12px rgba(23, 57, 74, 0.5);
+}
+.avaliacoes-google__nav {
+  position: absolute;
+  top: 42%;
+  z-index: 2;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(217, 120, 61, 0.32);
+  border-radius: 50%;
+  background: var(--branco);
+  color: var(--terracota);
+  font-size: 1.75rem;
+  line-height: 1;
+  box-shadow: 0 14px 30px -22px rgba(23, 57, 74, 0.6);
+}
+.avaliacoes-google__nav--anterior {
+  left: -0.3rem;
+}
+.avaliacoes-google__nav--proxima {
+  right: -0.3rem;
+}
+.avaliacoes-google__nav:hover,
+.avaliacoes-google__nav:focus-visible {
+  background: var(--terracota);
+  color: var(--branco);
+}
 
 /* ==========================================================================
    INVESTIMENTO

@@ -1,5 +1,5 @@
 {
-  "_instrucoes": "Cada depoimento é um objeto com texto, nome, cargo/cidade e foto. Para adicionar um novo, copie um bloco inteiro (entre as chaves { }) e cole antes do colchete final, separando com vírgula. Se não tiver a foto ainda, deixe o caminho como está — aparece um círculo com a inicial do nome no lugar.",
+  "_instrucoes": "Em depoimentos, mantenha relatos de alunas do Planejar para Lucrar. Em avaliacoes_google, adicione avaliações do Google Meu Negócio da Elis. Se tiver print, preencha imagem com o caminho do arquivo; se não tiver, deixe vazio para mostrar o texto em card.",
 
   "depoimentos": [
     {
@@ -20,5 +20,378 @@
       "cargo": "Empresária",
       "foto": "assets/images/depoimentos/tali.jpg"
     }
-  ]
+  ],
+
+  "avaliacoes_google": {
+    "eyebrow": "Reputação pública",
+    "titulo": "Antes de entrar em uma sala com a Elis, veja o que outras empresas dizem depois de trabalhar com ela",
+    "subtitulo": "As avaliações no Google mostram uma coisa difícil de fabricar: consistência. Negócios diferentes, desafios diferentes, e o mesmo reconhecimento pela clareza, método e direção prática.",
+    "empresa": "Elis Nhaia Consultoria e Treinamento",
+    "nota_geral": "5,0",
+    "total_avaliacoes": "40 avaliações",
+    "link_todas": "Abrir avaliações no Google",
+    "link_google": "https://www.google.com/search?q=elis+nhaia+consultoria+e+treinamento&oq=elis+nhaia+consultoria+e+treinamento&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQABjvBTIHCAIQABjvBTIHCAMQABjvBTIHCAQQABjvBTIHCAUQABjvBdIBCTcwODFqMGoxNagCCLACAfEFJz7VYeh6IPI&sourceid=chrome&ie=UTF-8#lrd=0x74f13db97d2e3f5:0x19ab5e46cb9e898c,1,,,,",
+    "avaliacoes": [
+      {
+        "texto": "Quando escolhi a consultoria em grupo com a Elis, encarei como uma oportunidade. Afinal, há anos gostaria de fazer uma consultoria com ela, e na modalidade em grupo foi super possível. Antes de fechar minha inscrição, enviei uma série de dúvidas e todas foram sanadas (e posso dizer, cumpridas). Fui vista de forma individual ao mesmo tempo que tive oportunidade de conhecer profissionais de outras áreas. As demandas, necessidades e questões de ramos diferentes, pasmem, podem ser as mesmas ou muito parecidas. Talvez me alongue, mas escolhi a Elis também pois gosto do seu método científico e resolutivo, fujo de frases motivacionais e mensagens vazias. A consultoria trouxe metas e rumos. As soluções estavam todas comigo, sempre estiveram. Mas outra cabeça, outro olhar e método me ajudaram a criar uma estratégia a seguir. E como extra, ela é uma pessoa cheia de vontade e envolvida com muita gente de ramos distintos. Ela te puxa a participar, a interagir e ajuda a criar pontes.",
+        "nome": "Dai",
+        "empresa": "Cactando Cactos e Suculentas",
+        "data": "",
+        "nota": 5,
+        "destaque": true,
+        "imagem": "",
+        "link": "https://www.google.com/maps/contrib/115868713032426952675/reviews?hl=pt-BR"
+      },
+      {
+        "texto": "Elis é uma profissional incrível, dedicada em ajudar pequenos(as) empresários(as) a crescerem com clareza e estratégia. Seu conhecimento em Planejamento Estratégico e Vendas faz toda a diferença para quem busca resultados de verdade. Recomendo de olhos fechados! 💼✨",
+        "nome": "Mídia Clean",
+        "empresa": "",
+        "data": "",
+        "nota": 5,
+        "destaque": true,
+        "imagem": "",
+        "link": ""
+      },
+      {
+        "texto": "Serviço indispensável na minha empresa. Elis me ajuda em todo o planejamento de produtos novos e serviços existentes e sem mi mi mi, coloca minha empresa e minha vida nas linhas. Super recomendo",
+        "nome": "Toni Revista Duo",
+        "empresa": "",
+        "data": "",
+        "nota": 5,
+        "destaque": true,
+        "imagem": "",
+        "link": ""
+      },
+      {
+        "texto": "A Elis é diferente de muitos profissionais que vemos por aí, ela tem um diferencial, mostra resultados. E quem faz acontecer, sempre será bem referenciado. 🚀",
+        "nome": "Vicil Digital Joinville",
+        "empresa": "",
+        "data": "",
+        "nota": 5,
+        "destaque": true,
+        "imagem": "",
+        "link": ""
+      },
+      {
+        "texto": "Querida Elis, passando por aqui para um momento de pausa e gratidão. Em meio à correria do dia a dia, queremos registrar o quanto sua presença faz diferença em nossa empresa. Você não está apenas cumprindo tarefas; você está cuidando, acolhendo e fazendo tudo com um cuidado tão genuíno que transforma o ambiente. É como aquele toque suave que equilibra e traz leveza para os dias mais pesados. Sua dedicação e excelência têm sido fundamentais. Obrigada por cuidar da nossa empresa com tanto zelo e por fazer parte dessa família. Que você receba em dobro toda a energia boa que transmite! Com muito carinho e gratidão, MōTri",
+        "nome": "Mike Oliveira",
+        "empresa": "MōTri",
+        "data": "",
+        "nota": 5,
+        "destaque": false,
+        "imagem": "",
+        "link": ""
+      },
+      {
+        "texto": "A melhor planejadora! Ela entrega um plano de ação prático para aplicar no seu negócio e também te ensina a vender! Eu já caminho a anos com a Elis e posso dizer que muito do que sei ela me ensinou, me fez ver e valorizar o poder das vendas e também trouxe clareza para agir na direção correta. Se você seguir o que ela planeja, o resultado é garantido 🥰",
+        "nome": "Gabriela Bannak",
+        "empresa": "",
+        "data": "",
+        "nota": 5,
+        "destaque": false,
+        "imagem": "",
+        "link": ""
+      },
+      {
+        "texto": "Profissional inteligente, prestativa e decisiva, com foco em resultados, qualidades que fazem toda a diferença em todas as organizações. Com talento natural, é dedicada, sempre buscando a excelência em suas ações. Tenho certeza que, como gestor de uma empresa você tiver a oportunidade de trabalhar com a Elis Nhaia, estará fazendo uma parceria de confiança, comprometimento e sucesso.",
+        "nome": "Laure",
+        "empresa": "",
+        "data": "",
+        "nota": 5,
+        "destaque": false,
+        "imagem": "",
+        "link": ""
+      },
+      {
+        "texto": "A Elis Nhaia é uma profissional diferenciada que atua na área de vendas direta e na consultoria ajudando pessoas e empresas a administrarem seus negócios com foco nos melhores resultados. Sempre se atualizando, buscando técnicas e ações que ajude as empresas a se diferenciar no mercado afim de alcançar seus objetivos. Excelente profissional, parabéns pela dedicação e amor no que faz!!",
+        "nome": "Lisiane Silva",
+        "empresa": "",
+        "data": "",
+        "nota": 5,
+        "destaque": false,
+        "imagem": "",
+        "link": ""
+      },
+      {
+        "texto": "Profissional com visão estratégica, foco em resultados e uma habilidade impressionante de transformar desafios em oportunidades. Elis é comunicativa e com olhar afiado para o negócio. Se você precisa organizar o setor comercial da sua empresa, treinar sua equipe, e vender mais, pode confiar: o trabalho dela entrega resultado de verdade.",
+        "nome": "Silvia Salete Dias Rech",
+        "empresa": "",
+        "data": "",
+        "nota": 5,
+        "destaque": false,
+        "imagem": "",
+        "link": ""
+      },
+      {
+        "texto": "A Elis Nhaia é uma profissional estratégica, prática e muito comprometida com resultados. Tem facilidade em entender o negócio, orientar decisões e ajudar empresas a se organizarem de forma eficiente. Uma parceria de confiança.",
+        "nome": "Karolyni Santos",
+        "empresa": "",
+        "data": "5 meses atrás",
+        "nota": 5,
+        "destaque": false,
+        "imagem": "",
+        "link": ""
+      },
+      {
+        "texto": "Profissional objetiva, ética e criativa. Se pauta na realidade de mercados após estudar os públicos com os quais o cliente se relaciona. Baseada em fatos e dados, apresenta sugestões de soluções.",
+        "nome": "Cleide Vieira",
+        "empresa": "",
+        "data": "",
+        "nota": 5,
+        "destaque": false,
+        "imagem": "",
+        "link": ""
+      },
+      {
+        "texto": "Toda consultoria e treinamento realizado com a Elis juntamente com minha equipe, tivemos um excelente resultado em nossas metas! Fui cliente dela por um período de 03 anos, gratidão por tudo! Super RECOMENDO…. 10/10",
+        "nome": "Israel Farias",
+        "empresa": "",
+        "data": "",
+        "nota": 5,
+        "destaque": false,
+        "imagem": "",
+        "link": ""
+      },
+      {
+        "texto": "A Elis é uma profissional incrível e competente. Tem um olhar clínico e consegue identificar os pontos que realmente merecem atenção. Ela tem a capacidade de transformar completamente um negócio para melhor!",
+        "nome": "Maria Luiza Dunker",
+        "empresa": "",
+        "data": "",
+        "nota": 5,
+        "destaque": false,
+        "imagem": "",
+        "link": ""
+      },
+      {
+        "texto": "Tivemos a honra de contar com um trabalho de consultoria de excelência, que trouxe clareza, estratégia e um novo olhar para a nossa empresa. Gratidão por contribuir com o nosso crescimento e evolução.",
+        "nome": "Mrdecoracao Mara",
+        "empresa": "",
+        "data": "",
+        "nota": 5,
+        "destaque": false,
+        "imagem": "",
+        "link": ""
+      },
+      {
+        "texto": "Excelente profissional, prestativa e muito comprometida! Realmente entrega tudo o que promete. Além disso, é uma pessoa incrível e muito querida. 💗",
+        "nome": "natacha siqueira",
+        "empresa": "",
+        "data": "",
+        "nota": 5,
+        "destaque": false,
+        "imagem": "",
+        "link": ""
+      },
+      {
+        "texto": "Elis é uma consultora incrível, confiável, tem excelentes ideias e percepções que trazem resultados práticos para a empresa e projetos. Super recomendo!",
+        "nome": "Carolina Mota",
+        "empresa": "",
+        "data": "",
+        "nota": 5,
+        "destaque": false,
+        "imagem": "",
+        "link": ""
+      },
+      {
+        "texto": "Profissional excelente! Comprometida, sempre presente, capacitada, humana no que faz!! Que Deus abençoe sempre seu trabalho e a excelência com que o realiza.",
+        "nome": "daiane bueno Iung",
+        "empresa": "",
+        "data": "",
+        "nota": 5,
+        "destaque": false,
+        "imagem": "",
+        "link": ""
+      },
+      {
+        "texto": "A Elis é maravilhosa para desenvolver a parte estratégica da empresa, me ajudou a ver caminhos que antes eu não estava vendo",
+        "nome": "Tassiana Rovina",
+        "empresa": "",
+        "data": "",
+        "nota": 5,
+        "destaque": false,
+        "imagem": "",
+        "link": ""
+      },
+      {
+        "texto": "Tive a oportunidade de ter a consultoria da Elis, com toda certeza me ajudou muito a evolução da minha empresa.",
+        "nome": "Andréa Costa",
+        "empresa": "",
+        "data": "",
+        "nota": 5,
+        "destaque": false,
+        "imagem": "",
+        "link": ""
+      },
+      {
+        "texto": "A Elis é uma profissional de sucesso, o trabalho dela é impecável. Podem contrata-la sem dúvida.",
+        "nome": "Alessandra Rocha Simas Pieper",
+        "empresa": "",
+        "data": "",
+        "nota": 5,
+        "destaque": false,
+        "imagem": "",
+        "link": ""
+      },
+      {
+        "texto": "Super profissional, domínio técnico, geradora de resultados focada em soluções. Rica, comprometida, didática clara e objetiva.",
+        "nome": "Angela Adriana Ventura",
+        "empresa": "",
+        "data": "",
+        "nota": 5,
+        "destaque": false,
+        "imagem": "",
+        "link": ""
+      },
+      {
+        "texto": "Mulher de atitude, que mostra o caminho sem mimimi 🤭 Treinamento de verdade 💪🏻",
+        "nome": "Nilci Teodoro",
+        "empresa": "",
+        "data": "",
+        "nota": 5,
+        "destaque": false,
+        "imagem": "",
+        "link": ""
+      },
+      {
+        "texto": "Consegui potencializar meus negócios graças a consultoria e o treinamento da Elis. RECOMENDO!",
+        "nome": "Zeka Chaves",
+        "empresa": "",
+        "data": "",
+        "nota": 5,
+        "destaque": false,
+        "imagem": "",
+        "link": ""
+      },
+      {
+        "texto": "Só cresci depois que conheci a Elis…ela passa muita segurança e isso é primordial pra nós empreendedores ❤️",
+        "nome": "Regina Rolak",
+        "empresa": "",
+        "data": "",
+        "nota": 5,
+        "destaque": false,
+        "imagem": "",
+        "link": ""
+      },
+      {
+        "texto": "Uma profissional incrível, uma baita empreendedora aprendi muito com ela e agregou muito no meu trabalho.",
+        "nome": "Vilma Rodrigues",
+        "empresa": "",
+        "data": "",
+        "nota": 5,
+        "destaque": false,
+        "imagem": "",
+        "link": ""
+      },
+      {
+        "texto": "Profissional espetacular. Sabe transmitir as informações.",
+        "nome": "deborah reimer",
+        "empresa": "",
+        "data": "",
+        "nota": 5,
+        "destaque": false,
+        "imagem": "",
+        "link": ""
+      },
+      {
+        "texto": "Foco em resultado e busca por excelência!!! Super recomendo!",
+        "nome": "Eliza Pereira de Oliveira",
+        "empresa": "",
+        "data": "",
+        "nota": 5,
+        "destaque": false,
+        "imagem": "",
+        "link": ""
+      },
+      {
+        "texto": "Inteligência aplicada ao negócio, é excelente, recomendo!",
+        "nome": "André Piero",
+        "empresa": "",
+        "data": "",
+        "nota": 5,
+        "destaque": false,
+        "imagem": "",
+        "link": ""
+      },
+      {
+        "texto": "Uma pessoa fantástica e sincera! Super recomendo...",
+        "nome": "Ricardo Esemann",
+        "empresa": "",
+        "data": "",
+        "nota": 5,
+        "destaque": false,
+        "imagem": "",
+        "link": ""
+      },
+      {
+        "texto": "A Elis é uma profissional INCRÍVEL! Sempre atenta e disponível.",
+        "nome": "Franciele Cristina",
+        "empresa": "",
+        "data": "",
+        "nota": 5,
+        "destaque": false,
+        "imagem": "",
+        "link": ""
+      },
+      {
+        "texto": "Ter o acompanhamento da Elis, foi uma virada de chave para minha empresa!",
+        "nome": "Daiani Francisco Floriano",
+        "empresa": "",
+        "data": "",
+        "nota": 5,
+        "destaque": false,
+        "imagem": "",
+        "link": ""
+      },
+      {
+        "texto": "A Elis é uma ótima profissional ✨",
+        "nome": "Orjana Borba",
+        "empresa": "",
+        "data": "",
+        "nota": 5,
+        "destaque": false,
+        "imagem": "",
+        "link": ""
+      },
+      {
+        "texto": "Profissional nota mil, amei a experiência!",
+        "nome": "andriele machado",
+        "empresa": "",
+        "data": "",
+        "nota": 5,
+        "destaque": false,
+        "imagem": "",
+        "link": ""
+      },
+      {
+        "texto": "Ótima profissional! Recomendo.",
+        "nome": "Giselle Liane Vieira Kohler",
+        "empresa": "",
+        "data": "",
+        "nota": 5,
+        "destaque": false,
+        "imagem": "",
+        "link": ""
+      },
+      {
+        "texto": "Trabalho impecável!",
+        "nome": "Letícia Bueno",
+        "empresa": "",
+        "data": "",
+        "nota": 5,
+        "destaque": false,
+        "imagem": "",
+        "link": ""
+      },
+      {
+        "texto": "APRENDIZADO EXTRAORDINÁRIO",
+        "nome": "Cicero Soares",
+        "empresa": "",
+        "data": "",
+        "nota": 5,
+        "destaque": false,
+        "imagem": "",
+        "link": ""
+      }
+    ]
+  }
 }

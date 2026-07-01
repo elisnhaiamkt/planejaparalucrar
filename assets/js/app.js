@@ -86,6 +86,7 @@
     montarListaSimples("#transformacao-depois", content.transformacao.depois.itens, (t) => criarLi(t));
     montarGruposParaQuem("#grupos-paraquem", content.para_quem.grupos);
     montarDepoimentos("#grid-depoimentos", testimonials.depoimentos);
+    montarAvaliacoesGoogle(testimonials.avaliacoes_google);
     montarInvestimento("#grid-investimento", content.investimento.opcoes);
     montarGarantia(config.garantia, content.garantia);
     montarFAQ("#lista-faq", faq.perguntas);
@@ -371,6 +372,115 @@
 
       alvo.appendChild(div);
     });
+  }
+
+  function montarAvaliacoesGoogle(secao) {
+    const raiz = document.querySelector("#avaliacoes-google");
+    const trilho = document.querySelector("#google-reviews-track");
+    const viewport = document.querySelector("#google-reviews-viewport");
+    if (!raiz || !trilho || !secao || !secao.avaliacoes || !secao.avaliacoes.length) {
+      if (raiz) raiz.remove();
+      return;
+    }
+
+    const eyebrow = document.querySelector("#google-reviews-eyebrow");
+    const titulo = document.querySelector("#google-reviews-titulo");
+    const subtitulo = document.querySelector("#google-reviews-subtitulo");
+    const linkTodas = document.querySelector("#google-reviews-link");
+    const empresa = document.querySelector("#google-reviews-empresa");
+    const notaGeral = document.querySelector("#google-reviews-nota");
+    const totalAvaliacoes = document.querySelector("#google-reviews-total");
+
+    if (eyebrow) eyebrow.textContent = secao.eyebrow || "";
+    if (titulo) titulo.textContent = secao.titulo || "";
+    if (subtitulo) subtitulo.textContent = secao.subtitulo || "";
+    if (empresa) empresa.textContent = secao.empresa || "";
+    if (notaGeral) notaGeral.textContent = secao.nota_geral || "5,0";
+    if (totalAvaliacoes) totalAvaliacoes.textContent = secao.total_avaliacoes || "";
+    if (linkTodas) {
+      const primeiroLink = secao.link_google || (secao.avaliacoes.find((avaliacao) => avaliacao.link) || {}).link;
+      linkTodas.textContent = secao.link_todas || "Ver avaliações";
+      linkTodas.href = primeiroLink || "#";
+      if (!primeiroLink) linkTodas.remove();
+    }
+
+    trilho.innerHTML = "";
+    secao.avaliacoes.forEach((avaliacao) => {
+      const artigo = document.createElement("article");
+      artigo.className = "google-review revelar" + (avaliacao.destaque ? " google-review--destaque" : "");
+      artigo.innerHTML =
+        '<div class="google-review__imagem">' +
+        '  <img alt="" loading="lazy" style="display:none;">' +
+        "</div>" +
+        '<div class="google-review__conteudo">' +
+        '  <div class="google-review__cabecalho">' +
+        '    <div class="google-review__avatar"></div>' +
+        '    <div class="google-review__identidade">' +
+        '      <h3 class="google-review__nome"></h3>' +
+        '      <p class="google-review__empresa"></p>' +
+        "    </div>" +
+        "  </div>" +
+        '  <div class="google-review__meta">' +
+        '    <span class="google-review__estrelas" aria-label="5 estrelas"></span>' +
+        '    <span class="google-review__data"></span>' +
+        "  </div>" +
+        '  <blockquote class="google-review__texto"></blockquote>' +
+        '  <a class="google-review__origem" target="_blank" rel="noopener">' +
+        '    <span class="google-review__g" aria-hidden="true">G</span>' +
+        "    <span>Google</span>" +
+        "  </a>" +
+        "</div>";
+
+      artigo.querySelector(".google-review__texto").textContent = avaliacao.texto;
+      artigo.querySelector(".google-review__nome").textContent = avaliacao.nome;
+      artigo.querySelector(".google-review__empresa").textContent = avaliacao.empresa || "";
+      artigo.querySelector(".google-review__avatar").textContent = obterIniciais(avaliacao.nome);
+      artigo.querySelector(".google-review__data").textContent = avaliacao.data || "";
+
+      const origem = artigo.querySelector(".google-review__origem");
+      origem.href = avaliacao.link || secao.link_google || "#";
+
+      const estrelas = artigo.querySelector(".google-review__estrelas");
+      const nota = Math.max(0, Math.min(5, Number(avaliacao.nota || 5)));
+      estrelas.textContent = "★★★★★".slice(0, nota);
+      estrelas.setAttribute("aria-label", nota + " estrelas");
+
+      const imagem = artigo.querySelector(".google-review__imagem");
+      const img = imagem.querySelector("img");
+      carregarImagemComFallback(img, null, avaliacao.imagem);
+      if (!avaliacao.imagem) imagem.remove();
+
+      trilho.appendChild(artigo);
+    });
+
+    ligarCarrosselAvaliacoesGoogle(viewport, trilho, secao.avaliacoes.length);
+  }
+
+  function ligarCarrosselAvaliacoesGoogle(viewport, trilho, quantidade) {
+    const anterior = document.querySelector(".avaliacoes-google__nav--anterior");
+    const proxima = document.querySelector(".avaliacoes-google__nav--proxima");
+    if (!viewport || !trilho || !anterior || !proxima) return;
+
+    const irPara = (direcao) => {
+      const primeiroCard = trilho.querySelector(".google-review");
+      if (!primeiroCard) return;
+      const distancia = primeiroCard.getBoundingClientRect().width + 18;
+      viewport.scrollBy({ left: distancia * direcao, behavior: "smooth" });
+    };
+
+    anterior.addEventListener("click", () => irPara(-1));
+    proxima.addEventListener("click", () => irPara(1));
+
+    if (quantidade <= 3) {
+      anterior.hidden = true;
+      proxima.hidden = true;
+      return;
+    }
+
+    window.setInterval(() => {
+      const chegouAoFim = viewport.scrollLeft + viewport.clientWidth >= trilho.scrollWidth - 8;
+      viewport.scrollTo({ left: chegouAoFim ? 0 : viewport.scrollLeft + viewport.clientWidth * 0.85, behavior: "smooth" });
+    }, 4500);
   }
 
   /* ---------- Investimento ---------- */

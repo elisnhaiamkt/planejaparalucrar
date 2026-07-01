@@ -104,6 +104,24 @@
   /* Depoimentos: três colunas */
   .grid-depoimentos { grid-template-columns: repeat(3, 1fr); }
 
+  /* Avaliações do Google: esteira horizontal com vários cards visíveis */
+  .avaliacoes-google__topo {
+    grid-template-columns: minmax(0, 0.72fr) minmax(280px, 0.28fr);
+    align-items: start;
+  }
+  .avaliacoes-google__link {
+    justify-self: start;
+  }
+  .google-review {
+    flex-basis: calc((100% - 2.2rem) / 3);
+  }
+  .avaliacoes-google__nav--anterior {
+    left: -1.25rem;
+  }
+  .avaliacoes-google__nav--proxima {
+    right: -1.25rem;
+  }
+
   /* Investimento: cartões lado a lado, centrados */
   .grid-investimento { grid-template-columns: repeat(2, 1fr); max-width: 760px; margin-left: auto; margin-right: auto; }
   .comparativo-investimento { margin-left: auto; margin-right: auto; text-align: center; }
