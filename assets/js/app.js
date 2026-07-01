@@ -480,7 +480,7 @@
     window.setInterval(() => {
       const chegouAoFim = viewport.scrollLeft + viewport.clientWidth >= trilho.scrollWidth - 8;
       viewport.scrollTo({ left: chegouAoFim ? 0 : viewport.scrollLeft + viewport.clientWidth * 0.85, behavior: "smooth" });
-    }, 4500);
+    }, 12000);
   }
 
   /* ---------- Investimento ---------- */
