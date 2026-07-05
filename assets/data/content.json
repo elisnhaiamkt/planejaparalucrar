@@ -21,7 +21,7 @@
     "subheadline": "Pare de administrar problemas. Comece a construir uma empresa que cresce com direcionamento.",
     "cta_principal": "Quero garantir minha vaga na Turma 4",
     "cta_secundario": "Entrar no grupo VIP do WhatsApp",
-    "nota_cta": "Acesso confirmado imediatamente · Vagas limitadas a 10 empresários"
+    "nota_cta": "Acesso confirmado imediatamente · Vagas limitadas a 10 empresárias (os)."
   },
 
   "contador": {
@@ -71,12 +71,12 @@
     "escassez": "TURMA 4: Apenas 10 vagas. Não abrimos novas vagas durante a turma, após preenchidas, será preciso aguardar a próxima edição.",
     "cta": "Pronta (o) para começar? Dê o próximo passo agora mesmo.",
     "cta_botao": "Quero garantir minha vaga na Turma 4",
-    "nota_cta": " Há somente 10 vagas"
+    "nota_cta": "Há somente 10 vagas."
   },
 
   "metodo": {
     "eyebrow": "O programa",
-    "titulo": "4 encontros ao vivo. Um plano real de saída.",
+    "titulo": "4 encontros ao vivo. Saia com um plano claro para executar.",
     "intro": "Não é curso. Não é palestra. É um grupo estratégico onde você trabalha o seu negócio com a Elis facilitando, provocando e apontando o que você não está conseguindo ver de dentro.",
     "etapas": [
       {
@@ -140,17 +140,17 @@
     "antes": {
       "label": "Antes",
       "itens": [
-        "Empresária reativa, apagando incêndio",
-        "Decisões no improviso, sem critério",
-        "Negócio cresce e a confusão cresce junto"
+        "Empresária reativa, apagando incêndio.",
+        "Decisões no improviso, sem critério.",
+        "Negócio cresce e a confusão cresce junto."
       ]
     },
     "depois": {
       "label": "Depois",
       "itens": [
-        "Empresária estratégica, no comando",
-        "Decisões estruturadas, com critério claro",
-        "Crescimento organizado, com plano possível"
+        "Empresária estratégica, no comando.",
+        "Decisões estruturadas, com critério claro.",
+        "Crescimento organizado, com plano possível."
       ]
     },
     "cta_titulo": "Não tem certeza se esse é o seu momento?",
@@ -194,14 +194,14 @@
         "tipo": "parcelado",
         "label": "Parcelado na Hotmart",
         "valor": "12x de R$ 200",
-        "nota": "checkout seguro para pagamento parcelado",
+        "nota": "checkout seguro para pagamento parcelado.",
         "destaque": false
       },
       {
         "tipo": "vista",
         "label": "Pix à vista — melhor opção",
         "valor": "R$ 1.797",
-        "nota": "desconto de 10% · pagamento via Pix com a equipe",
+        "nota": "desconto de 10% · pagamento via Pix com a equipe.",
         "destaque": true
       }
     ],
@@ -220,7 +220,7 @@
     "itens": [
       "Pedido simples, direto com a equipe ou na própria Hotmart.",
       "Reembolso integral dentro do prazo.",
-      "Sua vaga libera para outro empresário da lista de espera."
+      "Sua vaga libera para outra empresária (o) da lista de espera."
     ],
     "cta_botao": "Quero garantir minha vaga com risco zero",
     "cta_whatsapp": "Tirar dúvidas sobre a garantia"
@@ -237,7 +237,7 @@
     "escassez": "Turma 4 · Julho 2026 · Apenas 10 vagas",
     "cta_botao": "Quero minha vaga no Planejar para Lucrar",
     "cta_secundario": "Entrar no grupo VIP do WhatsApp",
-    "nota_cta": "Acesso imediato · Turma 4 · Julho 2026 · Garantia de {dias} dias"
+    "nota_cta": "Acesso imediato · Turma 4 · Julho 2026 · Garantia de {dias} dias."
   },
 
   "footer": {
