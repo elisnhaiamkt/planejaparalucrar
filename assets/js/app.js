@@ -728,8 +728,13 @@
     );
   }
 
+  function scriptExternoJaCarregado(src, id) {
+    if (id && document.getElementById(id)) return true;
+    return Array.from(document.scripts).some((script) => script.src === src);
+  }
+
   function carregarScriptExterno(src, id) {
-    if (!src || (id && document.getElementById(id))) return;
+    if (!src || scriptExternoJaCarregado(src, id)) return;
     const script = document.createElement("script");
     script.async = true;
     script.src = src;
@@ -737,23 +742,51 @@
     document.head.appendChild(script);
   }
 
-  function instalarTagsRastreamento(config) {
-    const gaId = config.google_analytics_id;
-    const adsId = config.google_ads_id;
-    const metaId = config.meta_pixel_id;
-    const primeiroGoogleId = gaId || adsId;
-
+  function inicializarGtagGlobal() {
     window.dataLayer = window.dataLayer || [];
     window.gtag = window.gtag || function () {
       window.dataLayer.push(arguments);
     };
+  }
 
-    if (primeiroGoogleId) {
-      carregarScriptExterno("https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(primeiroGoogleId), "google-tag");
+  function carregarGoogleAnalytics(measurementId) {
+    if (!measurementId) return;
+
+    const scriptGoogleTag = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(measurementId);
+    carregarScriptExterno(scriptGoogleTag, "google-tag");
+
+    inicializarGtagGlobal();
+
+    window.__ppl_gtag_js_iniciado = window.__ppl_gtag_js_iniciado || false;
+    if (!window.__ppl_gtag_js_iniciado) {
       window.gtag("js", new Date());
-      if (gaId) window.gtag("config", gaId);
-      if (adsId && adsId !== gaId) window.gtag("config", adsId);
+      window.__ppl_gtag_js_iniciado = true;
     }
+
+    window.__ppl_ga4_configurados = window.__ppl_ga4_configurados || {};
+    if (!window.__ppl_ga4_configurados[measurementId]) {
+      window.gtag("config", measurementId);
+      window.__ppl_ga4_configurados[measurementId] = true;
+    }
+  }
+
+  function carregarGoogleAds(conversionId) {
+    if (!conversionId) return;
+
+    const scriptGoogleTag = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(conversionId);
+    carregarScriptExterno(scriptGoogleTag, "google-tag");
+
+    inicializarGtagGlobal();
+    window.gtag("config", conversionId);
+  }
+
+  function instalarTagsRastreamento(config) {
+    const gaId = config.google_analytics_id;
+    const adsId = config.google_ads_id;
+    const metaId = config.meta_pixel_id;
+
+    carregarGoogleAnalytics(gaId);
+    if (adsId && adsId !== gaId) carregarGoogleAds(adsId);
 
     if (metaId && typeof window.fbq !== "function") {
       window.fbq = function () {
