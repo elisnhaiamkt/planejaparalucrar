@@ -19,10 +19,13 @@
   },
 
   "rastreamento": {
-    "_instrucoes": "Cole aqui os IDs reais quando o tráfego pago for configurado. Os trechos de código já estão preparados em app.js (procure por 'gtag' e 'fbq').",
-    "google_analytics_id": "",
+    "_instrucoes": "Cole aqui os IDs reais quando o tráfego pago for configurado. A página captura UTMs/click IDs, salva a origem por alguns dias, repassa UTMs para o checkout e envia eventos para GA4, Google Ads, Meta Pixel e dataLayer quando os IDs existirem.",
+    "google_analytics_id": "G-GPDNC6KS4X",
     "google_ads_id": "",
-    "meta_pixel_id": ""
+    "meta_pixel_id": "",
+    "utm_retencao_dias": 30,
+    "repassar_utm_checkout": true,
+    "adicionar_origem_whatsapp": true
   },
 
   "exibicao": {

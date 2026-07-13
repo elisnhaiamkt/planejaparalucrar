@@ -21,6 +21,26 @@
 
   const CAMINHO_DADOS = "assets/data/";
   const CAMINHO_COMPONENTES = "components/";
+  const PARAMETROS_MARKETING = [
+    "utm_source",
+    "utm_medium",
+    "utm_campaign",
+    "utm_content",
+    "utm_term",
+    "utm_id",
+    "gclid",
+    "gbraid",
+    "wbraid",
+    "fbclid",
+    "msclkid",
+  ];
+  const RASTREAMENTO_PADRAO = {
+    utm_retencao_dias: 30,
+    repassar_utm_checkout: true,
+    adicionar_origem_whatsapp: true,
+  };
+  let contextoMarketing = null;
+  let configRastreamentoAtual = RASTREAMENTO_PADRAO;
 
   /* IDs das seções, na ordem em que aparecem no menu (content.header.nav) */
   const IDS_MENU = ["metodo", "autoridade", "depoimentos", "investimento", "garantia", "faq"];
@@ -91,10 +111,16 @@
     montarGarantia(config.garantia, content.garantia);
     montarFAQ("#lista-faq", faq.perguntas);
 
+    configRastreamentoAtual = normalizarConfigRastreamento(config.rastreamento);
+    contextoMarketing = obterContextoMarketing(configRastreamentoAtual);
+
+    instalarTagsRastreamento(configRastreamentoAtual);
     aplicarLinks(config.links);
     aplicarEscassez(config.exibicao, content);
     aplicarTokens(config);
-    ligarRastreamento(config.rastreamento);
+    ligarRastreamento();
+    ligarVisualizacaoSecoes();
+    ligarProfundidadeRolagem();
     ligarMenuMobile();
     iniciarContador(config.contador, content.contador);
 
@@ -560,11 +586,190 @@
         const aberto = botao.getAttribute("aria-expanded") === "true";
         botao.setAttribute("aria-expanded", String(!aberto));
         resposta.style.maxHeight = aberto ? "0px" : resposta.scrollHeight + "px";
+        if (!aberto) {
+          dispararRastreamento("faq_open", {
+            faq_indice: indice + 1,
+            faq_pergunta: item.pergunta,
+          });
+        }
       });
 
       wrapper.append(botao, resposta);
       alvo.appendChild(wrapper);
     });
+  }
+
+  /* ---------------------------------------------------------------------
+   * 3. CONTEXTO DE CAMPANHA (UTMs, click IDs e origem)
+   * ------------------------------------------------------------------- */
+
+  function normalizarConfigRastreamento(config) {
+    return Object.assign({}, RASTREAMENTO_PADRAO, config || {});
+  }
+
+  function podeUsarStorage() {
+    try {
+      const chaveTeste = "__teste_rastreamento__";
+      window.localStorage.setItem(chaveTeste, "1");
+      window.localStorage.removeItem(chaveTeste);
+      return true;
+    } catch (erro) {
+      return false;
+    }
+  }
+
+  function lerContextoSalvo() {
+    if (!podeUsarStorage()) return null;
+    try {
+      const salvo = window.localStorage.getItem("ppl_contexto_marketing");
+      return salvo ? JSON.parse(salvo) : null;
+    } catch (erro) {
+      return null;
+    }
+  }
+
+  function salvarContextoMarketing(contexto) {
+    if (!podeUsarStorage()) return;
+    try {
+      window.localStorage.setItem("ppl_contexto_marketing", JSON.stringify(contexto));
+    } catch (erro) {
+      console.warn("Nao foi possivel salvar o contexto de marketing:", erro);
+    }
+  }
+
+  function contextoExpirado(contexto, diasRetencao) {
+    if (!contexto || !contexto.capturado_em) return true;
+    const capturadoEm = new Date(contexto.capturado_em).getTime();
+    const limiteMs = Number(diasRetencao || 30) * 24 * 60 * 60 * 1000;
+    return isNaN(capturadoEm) || Date.now() - capturadoEm > limiteMs;
+  }
+
+  function obterParametrosDaUrl() {
+    const busca = new URLSearchParams(window.location.search);
+    return PARAMETROS_MARKETING.reduce((params, chave) => {
+      const valor = busca.get(chave);
+      if (valor) params[chave] = valor;
+      return params;
+    }, {});
+  }
+
+  function obterContextoMarketing(configRastreamento) {
+    const paramsAtuais = obterParametrosDaUrl();
+    const temParamsAtuais = Object.keys(paramsAtuais).length > 0;
+    const contextoSalvo = lerContextoSalvo();
+
+    if (!temParamsAtuais && contextoSalvo && !contextoExpirado(contextoSalvo, configRastreamento.utm_retencao_dias)) {
+      return contextoSalvo;
+    }
+
+    const contexto = {
+      parametros: temParamsAtuais ? paramsAtuais : {},
+      landing_page: window.location.href,
+      referrer: document.referrer || "",
+      capturado_em: new Date().toISOString(),
+    };
+
+    if (temParamsAtuais) {
+      salvarContextoMarketing(contexto);
+      return contexto;
+    }
+
+    return contextoSalvo && !contextoExpirado(contextoSalvo, configRastreamento.utm_retencao_dias)
+      ? contextoSalvo
+      : contexto;
+  }
+
+  function obterParametrosMarketing() {
+    return contextoMarketing && contextoMarketing.parametros ? contextoMarketing.parametros : {};
+  }
+
+  function aplicarParametrosNaUrl(link, params) {
+    if (!link || !params || !Object.keys(params).length) return link;
+    try {
+      const url = new URL(link, window.location.href);
+      Object.entries(params).forEach(([chave, valor]) => {
+        if (valor) url.searchParams.set(chave, valor);
+      });
+      return url.toString();
+    } catch (erro) {
+      console.warn("Link invalido para parametros de marketing:", link, erro);
+      return link;
+    }
+  }
+
+  function descreverOrigemParaWhatsApp() {
+    const params = obterParametrosMarketing();
+    const partes = [];
+    if (params.utm_source) partes.push("Fonte: " + params.utm_source);
+    if (params.utm_medium) partes.push("Midia: " + params.utm_medium);
+    if (params.utm_campaign) partes.push("Campanha: " + params.utm_campaign);
+    if (params.utm_content) partes.push("Criativo: " + params.utm_content);
+    if (params.utm_term) partes.push("Termo: " + params.utm_term);
+    if (!partes.length) return "";
+    return "\n\nOrigem do contato:\n" + partes.join("\n");
+  }
+
+  function obterSecaoDoElemento(el) {
+    const secao = el && el.closest ? el.closest("section, header, footer") : null;
+    return secao ? secao.id || secao.className || "" : "";
+  }
+
+  function obterPayloadRastreamento(extra) {
+    const contexto = contextoMarketing || {};
+    return Object.assign(
+      {
+        page_title: document.title,
+        page_location: window.location.href,
+        landing_page: contexto.landing_page || window.location.href,
+        referrer: contexto.referrer || document.referrer || "",
+      },
+      obterParametrosMarketing(),
+      extra || {}
+    );
+  }
+
+  function carregarScriptExterno(src, id) {
+    if (!src || (id && document.getElementById(id))) return;
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = src;
+    if (id) script.id = id;
+    document.head.appendChild(script);
+  }
+
+  function instalarTagsRastreamento(config) {
+    const gaId = config.google_analytics_id;
+    const adsId = config.google_ads_id;
+    const metaId = config.meta_pixel_id;
+    const primeiroGoogleId = gaId || adsId;
+
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = window.gtag || function () {
+      window.dataLayer.push(arguments);
+    };
+
+    if (primeiroGoogleId) {
+      carregarScriptExterno("https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(primeiroGoogleId), "google-tag");
+      window.gtag("js", new Date());
+      if (gaId) window.gtag("config", gaId);
+      if (adsId && adsId !== gaId) window.gtag("config", adsId);
+    }
+
+    if (metaId && typeof window.fbq !== "function") {
+      window.fbq = function () {
+        window.fbq.callMethod
+          ? window.fbq.callMethod.apply(window.fbq, arguments)
+          : window.fbq.queue.push(arguments);
+      };
+      if (!window._fbq) window._fbq = window.fbq;
+      window.fbq.push = window.fbq;
+      window.fbq.loaded = true;
+      window.fbq.version = "2.0";
+      window.fbq.queue = [];
+      carregarScriptExterno("https://connect.facebook.net/en_US/fbevents.js", "meta-pixel");
+      window.fbq("init", metaId);
+      window.fbq("track", "PageView");
+    }
   }
 
   /* ---------------------------------------------------------------------
@@ -580,7 +785,8 @@
       if (!mensagem) return linkBase;
       try {
         const url = new URL(linkBase);
-        url.searchParams.set("text", mensagem);
+        const complementoOrigem = configRastreamentoAtual.adicionar_origem_whatsapp ? descreverOrigemParaWhatsApp() : "";
+        url.searchParams.set("text", mensagem + complementoOrigem);
         return url.toString();
       } catch (erro) {
         console.warn("Link de WhatsApp inválido:", linkBase, erro);
@@ -589,7 +795,9 @@
     };
 
     document.querySelectorAll('[data-cta^="checkout-"]').forEach((el) => {
-      el.href = links.checkout_hotmart;
+      el.href = configRastreamentoAtual.repassar_utm_checkout
+        ? aplicarParametrosNaUrl(links.checkout_hotmart, obterParametrosMarketing())
+        : links.checkout_hotmart;
       el.target = "_blank";
       el.rel = "noopener";
     });
@@ -719,17 +927,35 @@
    * 5. RASTREAMENTO DE CLIQUES (preparado para GA4 / Meta Pixel)
    * ------------------------------------------------------------------- */
 
+  function obterEventoPadraoMeta(nomeEvento) {
+    const mapa = {
+      cta_checkout: "InitiateCheckout",
+      cta_whatsapp_equipe: "Contact",
+      cta_grupo_whatsapp: "Lead",
+    };
+    return mapa[nomeEvento] || "";
+  }
+
   function dispararRastreamento(nomeEvento, dataAttrs) {
-    // Google Analytics 4 (gtag.js) — descomente quando o snippet estiver instalado
+    const payload = obterPayloadRastreamento(dataAttrs);
+
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push(Object.assign({ event: nomeEvento }, payload));
+
+    // Google Analytics 4 / Google Ads (gtag.js)
     if (typeof window.gtag === "function") {
-      window.gtag("event", nomeEvento, dataAttrs);
+      window.gtag("event", nomeEvento, payload);
     }
-    // Meta Pixel — descomente quando o snippet estiver instalado
+
+    // Meta Pixel
     if (typeof window.fbq === "function") {
-      window.fbq("trackCustom", nomeEvento, dataAttrs);
+      const eventoPadrao = obterEventoPadraoMeta(nomeEvento);
+      if (eventoPadrao) window.fbq("track", eventoPadrao, payload);
+      window.fbq("trackCustom", nomeEvento, payload);
     }
+
     // Sempre loga no console para facilitar testes antes de plugar as ferramentas
-    console.info("[rastreamento]", nomeEvento, dataAttrs);
+    console.info("[rastreamento]", nomeEvento, payload);
   }
 
   function ligarRastreamento() {
@@ -739,8 +965,65 @@
       dispararRastreamento(el.getAttribute("data-track"), {
         cta_id: el.getAttribute("data-cta") || "",
         texto: el.textContent.trim(),
+        secao: obterSecaoDoElemento(el),
+        destino: el.href || "",
       });
     });
+  }
+
+  function ligarVisualizacaoSecoes() {
+    const secoes = Array.from(document.querySelectorAll("main section[id]"));
+    if (!secoes.length || typeof IntersectionObserver !== "function") return;
+
+    const secoesVistas = new Set();
+    const observer = new IntersectionObserver(
+      (entradas) => {
+        entradas.forEach((entrada) => {
+          if (!entrada.isIntersecting) return;
+          const secao = entrada.target;
+          if (secoesVistas.has(secao.id)) return;
+          secoesVistas.add(secao.id);
+          dispararRastreamento("view_section", {
+            section_id: secao.id,
+            section_title: (secao.querySelector("h1, h2") || {}).textContent || "",
+          });
+          observer.unobserve(secao);
+        });
+      },
+      { threshold: 0.55 }
+    );
+
+    secoes.forEach((secao) => observer.observe(secao));
+  }
+
+  function ligarProfundidadeRolagem() {
+    const marcos = [25, 50, 75, 90];
+    const enviados = new Set();
+
+    const aoRolar = () => {
+      const alturaDocumento = Math.max(
+        document.body.scrollHeight,
+        document.documentElement.scrollHeight,
+        document.body.offsetHeight,
+        document.documentElement.offsetHeight
+      );
+      const alturaJanela = window.innerHeight || document.documentElement.clientHeight;
+      const distanciaRolada = window.scrollY + alturaJanela;
+      const percentual = Math.round((distanciaRolada / alturaDocumento) * 100);
+
+      marcos.forEach((marco) => {
+        if (percentual < marco || enviados.has(marco)) return;
+        enviados.add(marco);
+        dispararRastreamento("scroll_depth", { scroll_percent: marco });
+      });
+
+      if (enviados.size === marcos.length) {
+        window.removeEventListener("scroll", aoRolar);
+      }
+    };
+
+    window.addEventListener("scroll", aoRolar, { passive: true });
+    aoRolar();
   }
 
   /* ---------------------------------------------------------------------

@@ -139,18 +139,46 @@ Ao adicionar qualquer foto, lembre de:
 
 ## 4. Rastreamento de tráfego pago (Google Ads / Meta)
 
-Os botões já têm os atributos `data-track="..."` prontos (ex.:
-`cta_checkout`, `cta_whatsapp_equipe`, `cta_grupo_whatsapp`). Cada clique já
-é registrado no console do navegador (F12 → aba "Console") para você testar
-antes de plugar as ferramentas de verdade.
+A página já tem uma camada de dados para tráfego pago. Ela captura parâmetros
+de campanha da URL, guarda a origem no navegador por alguns dias e envia esses
+dados junto com os eventos.
 
-Para ativar de fato:
-1. Cole o snippet oficial do Google tag (gtag.js) e/ou do Meta Pixel dentro
-   do `<head>` do `index.html`, no local indicado pelo comentário
-   `RASTREAMENTO`.
-2. Não precisa editar mais nada — o `app.js` já chama `gtag()` e `fbq()`
-   automaticamente quando eles existem na página (função
-   `dispararRastreamento`, dentro de `app.js`).
+Parâmetros capturados automaticamente:
+- `utm_source`
+- `utm_medium`
+- `utm_campaign`
+- `utm_content`
+- `utm_term`
+- `utm_id`
+- `gclid`, `gbraid`, `wbraid`
+- `fbclid`
+- `msclkid`
+
+Eventos disparados:
+- `cta_checkout`
+- `cta_whatsapp_equipe`
+- `cta_grupo_whatsapp`
+- `faq_open`
+- `view_section`
+- `scroll_depth`
+
+Para ativar as ferramentas de mídia, preencha em `config.json >
+rastreamento`:
+- `google_analytics_id`
+- `google_ads_id`
+- `meta_pixel_id`
+
+Quando esses IDs existem, o `app.js` carrega as tags automaticamente e envia
+eventos para GA4, Google Ads, Meta Pixel e `dataLayer`. Mesmo sem IDs, cada
+evento aparece no console do navegador com `[rastreamento]`, o que permite
+testar antes de publicar.
+
+O checkout recebe as UTMs automaticamente quando
+`repassar_utm_checkout` está como `true`. O WhatsApp recebe um resumo da origem
+na mensagem quando `adicionar_origem_whatsapp` está como `true`.
+
+Exemplo de teste local:
+`http://localhost:8000/?utm_source=meta&utm_medium=cpc&utm_campaign=turma4&utm_content=video01`
 
 ---
 
