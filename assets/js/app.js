@@ -39,8 +39,10 @@
     repassar_utm_checkout: true,
     adicionar_origem_whatsapp: true,
   };
+  const NOME_PRODUTO_PADRAO = "Planejar para Lucrar";
   let contextoMarketing = null;
   let configRastreamentoAtual = RASTREAMENTO_PADRAO;
+  let nomeProdutoAtual = NOME_PRODUTO_PADRAO;
 
   /* IDs das seções, na ordem em que aparecem no menu (content.header.nav) */
   const IDS_MENU = ["metodo", "autoridade", "depoimentos", "investimento", "garantia", "faq"];
@@ -111,6 +113,7 @@
     montarGarantia(config.garantia, content.garantia);
     montarFAQ("#lista-faq", faq.perguntas);
 
+    nomeProdutoAtual = (config.produto && config.produto.nome) || NOME_PRODUTO_PADRAO;
     configRastreamentoAtual = normalizarConfigRastreamento(config.rastreamento);
     contextoMarketing = obterContextoMarketing(configRastreamentoAtual);
 
@@ -121,6 +124,7 @@
     ligarRastreamento();
     ligarVisualizacaoSecoes();
     ligarProfundidadeRolagem();
+    ligarEngajamento120s();
     ligarMenuMobile();
     iniciarContador(config.contador, content.contador);
 
@@ -962,9 +966,8 @@
 
   function obterEventoPadraoMeta(nomeEvento) {
     const mapa = {
-      cta_checkout: "InitiateCheckout",
-      cta_whatsapp_equipe: "Contact",
-      cta_grupo_whatsapp: "Lead",
+      begin_checkout: "InitiateCheckout",
+      click_whatsapp: "Contact",
     };
     return mapa[nomeEvento] || "";
   }
@@ -995,13 +998,43 @@
     document.body.addEventListener("click", (evento) => {
       const el = evento.target.closest("[data-track]");
       if (!el) return;
-      dispararRastreamento(el.getAttribute("data-track"), {
-        cta_id: el.getAttribute("data-cta") || "",
-        texto: el.textContent.trim(),
-        secao: obterSecaoDoElemento(el),
-        destino: el.href || "",
-      });
+
+      const eventoRastreamento = obterEventoInteracao(el);
+      if (!eventoRastreamento) return;
+
+      dispararRastreamento(eventoRastreamento, obterPayloadInteracao(el));
     });
+  }
+
+  function obterEventoInteracao(el) {
+    const dataTrack = el.getAttribute("data-track") || "";
+    const dataCta = el.getAttribute("data-cta") || "";
+    const destino = el.href || "";
+
+    if (dataTrack === "cta_checkout" || dataCta.startsWith("checkout-") || /hotmart\.com/i.test(destino)) {
+      return "begin_checkout";
+    }
+
+    if (
+      dataTrack === "cta_whatsapp_equipe" ||
+      dataTrack === "cta_grupo_whatsapp" ||
+      dataCta.startsWith("whatsapp-") ||
+      dataCta.startsWith("grupo-") ||
+      /(?:wa\.me|whatsapp\.com)/i.test(destino)
+    ) {
+      return "click_whatsapp";
+    }
+
+    return "";
+  }
+
+  function obterPayloadInteracao(el) {
+    return {
+      product_name: nomeProdutoAtual,
+      button_text: el.textContent.trim() || el.getAttribute("aria-label") || "",
+      button_location: obterSecaoDoElemento(el),
+      destination_url: el.href || "",
+    };
   }
 
   function ligarVisualizacaoSecoes() {
@@ -1030,8 +1063,7 @@
   }
 
   function ligarProfundidadeRolagem() {
-    const marcos = [25, 50, 75, 90];
-    const enviados = new Set();
+    let scroll90Enviado = false;
 
     const aoRolar = () => {
       const alturaDocumento = Math.max(
@@ -1044,19 +1076,25 @@
       const distanciaRolada = window.scrollY + alturaJanela;
       const percentual = Math.round((distanciaRolada / alturaDocumento) * 100);
 
-      marcos.forEach((marco) => {
-        if (percentual < marco || enviados.has(marco)) return;
-        enviados.add(marco);
-        dispararRastreamento("scroll_depth", { scroll_percent: marco });
-      });
-
-      if (enviados.size === marcos.length) {
+      if (percentual >= 90 && !scroll90Enviado) {
+        scroll90Enviado = true;
+        dispararRastreamento("scroll_90", {
+          product_name: nomeProdutoAtual,
+        });
         window.removeEventListener("scroll", aoRolar);
       }
     };
 
     window.addEventListener("scroll", aoRolar, { passive: true });
     aoRolar();
+  }
+
+  function ligarEngajamento120s() {
+    window.setTimeout(() => {
+      dispararRastreamento("engaged_120s", {
+        product_name: nomeProdutoAtual,
+      });
+    }, 120000);
   }
 
   /* ---------------------------------------------------------------------

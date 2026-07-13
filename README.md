@@ -155,12 +155,12 @@ Parâmetros capturados automaticamente:
 - `msclkid`
 
 Eventos disparados:
-- `cta_checkout`
-- `cta_whatsapp_equipe`
-- `cta_grupo_whatsapp`
+- `begin_checkout`
+- `click_whatsapp`
 - `faq_open`
 - `view_section`
-- `scroll_depth`
+- `scroll_90`
+- `engaged_120s`
 
 Para ativar as ferramentas de mídia, preencha em `config.json >
 rastreamento`:
