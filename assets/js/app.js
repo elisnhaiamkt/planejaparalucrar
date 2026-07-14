@@ -40,7 +40,30 @@
     adicionar_origem_whatsapp: true,
     ativo: true,
   };
-  const NOME_PRODUTO_PADRAO = "Planejar para Lucrar";
+  const PRODUTO_RASTREAMENTO_PADRAO = {
+    id: "planejar_para_lucrar_turma_4",
+    nome: "Planejar para Lucrar",
+    valor: 2000,
+    moeda: "BRL",
+  };
+  const MAPA_META = {
+    page_view: "PageView",
+    begin_checkout: "InitiateCheckout",
+    click_whatsapp: "WhatsAppClick",
+    scroll_90: "Scroll90",
+    engaged_120s: "Engaged120s",
+    purchase: "Purchase",
+  };
+  const EVENTOS_META_PADRAO = new Set(["PageView", "InitiateCheckout", "Purchase"]);
+  const MAPA_GOOGLE_ADS = {
+    begin_checkout: "conversion",
+    purchase: "conversion",
+  };
+  const LOCATIONS_RASTREAMENTO = {
+    depoimentos: "provas_sociais",
+    "cta-final": "cta_final",
+    "whatsapp-flutuante": "whatsapp_flutuante",
+  };
   const CONFIG_FALLBACK_SEM_RASTREAMENTO = {
     produto: {
       nome: "Planejar para Lucrar",
@@ -63,6 +86,7 @@
       google_ads_id: "",
       google_ads_conversion_label: "",
       meta_pixel_id: "",
+      produto: Object.assign({}, PRODUTO_RASTREAMENTO_PADRAO),
       utm_retencao_dias: 30,
       repassar_utm_checkout: false,
       adicionar_origem_whatsapp: false,
@@ -85,7 +109,10 @@
   };
   let contextoMarketing = null;
   let configRastreamentoAtual = RASTREAMENTO_PADRAO;
-  let nomeProdutoAtual = NOME_PRODUTO_PADRAO;
+  let produtoRastreamentoAtual = Object.assign({}, PRODUTO_RASTREAMENTO_PADRAO);
+  let rastreamentoInicializado = false;
+  let rafScroll90 = null;
+  let timerEngajamento120s = null;
 
   /* IDs das seções, na ordem em que aparecem no menu (content.header.nav) */
   const IDS_MENU = ["metodo", "autoridade", "depoimentos", "investimento", "garantia", "faq"];
@@ -165,8 +192,8 @@
     montarGarantia(config.garantia, content.garantia);
     montarFAQ("#lista-faq", faq.perguntas);
 
-    nomeProdutoAtual = (config.produto && config.produto.nome) || NOME_PRODUTO_PADRAO;
     configRastreamentoAtual = normalizarConfigRastreamento(config.rastreamento);
+    produtoRastreamentoAtual = obterProdutoRastreamento(config);
     contextoMarketing = obterContextoMarketing(configRastreamentoAtual);
 
     instalarTagsRastreamento(configRastreamentoAtual);
@@ -174,7 +201,6 @@
     aplicarEscassez(config.exibicao, content);
     aplicarTokens(config);
     ligarRastreamento();
-    ligarVisualizacaoSecoes();
     ligarProfundidadeRolagem();
     ligarEngajamento120s();
     ligarMenuMobile();
@@ -642,12 +668,6 @@
         const aberto = botao.getAttribute("aria-expanded") === "true";
         botao.setAttribute("aria-expanded", String(!aberto));
         resposta.style.maxHeight = aberto ? "0px" : resposta.scrollHeight + "px";
-        if (!aberto) {
-          dispararRastreamento("faq_open", {
-            faq_indice: indice + 1,
-            faq_pergunta: item.pergunta,
-          });
-        }
       });
 
       wrapper.append(botao, resposta);
@@ -660,7 +680,17 @@
    * ------------------------------------------------------------------- */
 
   function normalizarConfigRastreamento(config) {
-    return Object.assign({}, RASTREAMENTO_PADRAO, config || {});
+    const configNormalizada = Object.assign({}, RASTREAMENTO_PADRAO, config || {});
+    configNormalizada.produto = Object.assign({}, PRODUTO_RASTREAMENTO_PADRAO, configNormalizada.produto || {});
+    return configNormalizada;
+  }
+
+  function obterProdutoRastreamento(config) {
+    const produtoBase = Object.assign({}, PRODUTO_RASTREAMENTO_PADRAO);
+    if (config && config.produto && config.produto.nome) {
+      produtoBase.nome = config.produto.nome;
+    }
+    return Object.assign(produtoBase, (config && config.rastreamento && config.rastreamento.produto) || {});
   }
 
   function podeUsarStorage() {
@@ -766,8 +796,23 @@
   }
 
   function obterSecaoDoElemento(el) {
-    const secao = el && el.closest ? el.closest("section, header, footer") : null;
-    return secao ? secao.id || secao.className || "" : "";
+    if (!el || !el.closest) return "";
+    if (el.id === "whatsapp-flutuante" || el.closest("#whatsapp-flutuante")) return "whatsapp_flutuante";
+
+    const secao = el.closest("section, header, footer");
+    const id = secao ? secao.id || secao.className || "" : "";
+    return LOCATIONS_RASTREAMENTO[id] || id.replace(/-/g, "_");
+  }
+
+  function obterUrlSemDadosSensiveis(urlOriginal) {
+    if (!urlOriginal) return "";
+    try {
+      const url = new URL(urlOriginal, window.location.href);
+      url.searchParams.delete("text");
+      return url.toString();
+    } catch (erro) {
+      return urlOriginal;
+    }
   }
 
   function obterPayloadRastreamento(extra) {
@@ -776,6 +821,7 @@
       {
         page_title: document.title,
         page_location: window.location.href,
+        page_path: window.location.pathname,
         landing_page: contexto.landing_page || window.location.href,
         referrer: contexto.referrer || document.referrer || "",
       },
@@ -833,7 +879,34 @@
     carregarScriptExterno(scriptGoogleTag, "google-tag");
 
     inicializarGtagGlobal();
-    window.gtag("config", conversionId);
+    window.__ppl_google_ads_configurados = window.__ppl_google_ads_configurados || {};
+    if (!window.__ppl_google_ads_configurados[conversionId]) {
+      window.gtag("config", conversionId);
+      window.__ppl_google_ads_configurados[conversionId] = true;
+    }
+  }
+
+  function carregarMetaPixel(pixelId) {
+    if (!pixelId || (window.__ppl_meta_pixels_iniciados && window.__ppl_meta_pixels_iniciados[pixelId])) return;
+
+    if (typeof window.fbq !== "function") {
+      window.fbq = function () {
+        window.fbq.callMethod
+          ? window.fbq.callMethod.apply(window.fbq, arguments)
+          : window.fbq.queue.push(arguments);
+      };
+      if (!window._fbq) window._fbq = window.fbq;
+      window.fbq.push = window.fbq;
+      window.fbq.loaded = true;
+      window.fbq.version = "2.0";
+      window.fbq.queue = [];
+    }
+
+    carregarScriptExterno("https://connect.facebook.net/en_US/fbevents.js", "meta-pixel");
+    window.__ppl_meta_pixels_iniciados = window.__ppl_meta_pixels_iniciados || {};
+    window.fbq("init", pixelId);
+    window.__ppl_meta_pixels_iniciados[pixelId] = true;
+    enviarEventoMeta("page_view", {});
   }
 
   function instalarTagsRastreamento(config) {
@@ -845,22 +918,7 @@
 
     carregarGoogleAnalytics(gaId);
     if (adsId && adsId !== gaId) carregarGoogleAds(adsId);
-
-    if (metaId && typeof window.fbq !== "function") {
-      window.fbq = function () {
-        window.fbq.callMethod
-          ? window.fbq.callMethod.apply(window.fbq, arguments)
-          : window.fbq.queue.push(arguments);
-      };
-      if (!window._fbq) window._fbq = window.fbq;
-      window.fbq.push = window.fbq;
-      window.fbq.loaded = true;
-      window.fbq.version = "2.0";
-      window.fbq.queue = [];
-      carregarScriptExterno("https://connect.facebook.net/en_US/fbevents.js", "meta-pixel");
-      window.fbq("init", metaId);
-      window.fbq("track", "PageView");
-    }
+    carregarMetaPixel(metaId);
   }
 
   /* ---------------------------------------------------------------------
@@ -1018,40 +1076,63 @@
    * 5. RASTREAMENTO DE CLIQUES (preparado para GA4 / Meta Pixel)
    * ------------------------------------------------------------------- */
 
-  function obterEventoPadraoMeta(nomeEvento) {
-    const mapa = {
-      begin_checkout: "InitiateCheckout",
-      click_whatsapp: "Contact",
-    };
-    return mapa[nomeEvento] || "";
-  }
-
-  function dispararRastreamento(nomeEvento, dataAttrs) {
+  function registrarEvento(nomeEvento, parametros) {
     if (!configRastreamentoAtual || configRastreamentoAtual.ativo === false) return;
 
-    const payload = obterPayloadRastreamento(dataAttrs);
+    const payload = obterPayloadRastreamento(parametros);
 
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push(Object.assign({ event: nomeEvento }, payload));
 
-    // Google Analytics 4 / Google Ads (gtag.js)
-    if (typeof window.gtag === "function") {
-      window.gtag("event", nomeEvento, payload);
-    }
-
-    // Meta Pixel
-    if (typeof window.fbq === "function") {
-      const eventoPadrao = obterEventoPadraoMeta(nomeEvento);
-      if (eventoPadrao) window.fbq("track", eventoPadrao, payload);
-      window.fbq("trackCustom", nomeEvento, payload);
-    }
+    enviarEventoGA4(nomeEvento, payload);
+    enviarEventoMeta(nomeEvento, payload);
+    enviarEventoGoogleAds(nomeEvento, payload);
 
     // Sempre loga no console para facilitar testes antes de plugar as ferramentas
     console.info("[rastreamento]", nomeEvento, payload);
   }
 
+  function dispararRastreamento(nomeEvento, dataAttrs) {
+    registrarEvento(nomeEvento, dataAttrs);
+  }
+
+  function enviarEventoGA4(nomeEvento, payload) {
+    if (nomeEvento === "page_view" || typeof window.gtag !== "function") return;
+    window.gtag("event", nomeEvento, payload);
+  }
+
+  function enviarEventoMeta(nomeEvento, payload) {
+    if (typeof window.fbq !== "function" || !configRastreamentoAtual.meta_pixel_id) return;
+    const eventoMeta = MAPA_META[nomeEvento];
+    if (!eventoMeta) return;
+
+    if (EVENTOS_META_PADRAO.has(eventoMeta)) {
+      window.fbq("track", eventoMeta, payload);
+      return;
+    }
+
+    window.fbq("trackCustom", eventoMeta, payload);
+  }
+
+  function enviarEventoGoogleAds(nomeEvento, payload) {
+    if (typeof window.gtag !== "function") return;
+    if (!MAPA_GOOGLE_ADS[nomeEvento]) return;
+
+    const adsId = configRastreamentoAtual.google_ads_id;
+    const label = configRastreamentoAtual.google_ads_conversion_label;
+    if (!adsId || !label) return;
+
+    window.gtag("event", MAPA_GOOGLE_ADS[nomeEvento], {
+      send_to: adsId + "/" + label,
+      value: payload.value,
+      currency: payload.currency,
+    });
+  }
+
   function ligarRastreamento() {
     if (!configRastreamentoAtual || configRastreamentoAtual.ativo === false) return;
+    if (window.__ppl_listener_cliques_rastreamento) return;
+    window.__ppl_listener_cliques_rastreamento = true;
 
     document.body.addEventListener("click", (evento) => {
       const el = evento.target.closest("[data-track]");
@@ -1087,47 +1168,44 @@
   }
 
   function obterPayloadInteracao(el) {
-    return {
-      product_name: nomeProdutoAtual,
+    const evento = obterEventoInteracao(el);
+    const payloadBase = {
       button_text: el.textContent.trim() || el.getAttribute("aria-label") || "",
       button_location: obterSecaoDoElemento(el),
-      destination_url: el.href || "",
+      destination_url: obterUrlSemDadosSensiveis(el.href || ""),
     };
-  }
 
-  function ligarVisualizacaoSecoes() {
-    if (!configRastreamentoAtual || configRastreamentoAtual.ativo === false) return;
+    if (evento === "begin_checkout") {
+      return Object.assign({}, payloadBase, {
+        currency: produtoRastreamentoAtual.moeda,
+        value: Number(produtoRastreamentoAtual.valor || 0),
+        items: [
+          {
+            item_id: produtoRastreamentoAtual.id,
+            item_name: produtoRastreamentoAtual.nome,
+            price: Number(produtoRastreamentoAtual.valor || 0),
+            quantity: 1,
+          },
+        ],
+      });
+    }
 
-    const secoes = Array.from(document.querySelectorAll("main section[id]"));
-    if (!secoes.length || typeof IntersectionObserver !== "function") return;
-
-    const secoesVistas = new Set();
-    const observer = new IntersectionObserver(
-      (entradas) => {
-        entradas.forEach((entrada) => {
-          if (!entrada.isIntersecting) return;
-          const secao = entrada.target;
-          if (secoesVistas.has(secao.id)) return;
-          secoesVistas.add(secao.id);
-          dispararRastreamento("view_section", {
-            section_id: secao.id,
-            section_title: (secao.querySelector("h1, h2") || {}).textContent || "",
-          });
-          observer.unobserve(secao);
-        });
-      },
-      { threshold: 0.55 }
-    );
-
-    secoes.forEach((secao) => observer.observe(secao));
+    return Object.assign({}, payloadBase, {
+      product_name: produtoRastreamentoAtual.nome,
+      product_id: produtoRastreamentoAtual.id,
+    });
   }
 
   function ligarProfundidadeRolagem() {
     if (!configRastreamentoAtual || configRastreamentoAtual.ativo === false) return;
+    if (window.__ppl_listener_scroll_90) return;
+    window.__ppl_listener_scroll_90 = true;
 
     let scroll90Enviado = false;
+    let scrollPendente = false;
 
-    const aoRolar = () => {
+    const verificarScroll = () => {
+      scrollPendente = false;
       const alturaDocumento = Math.max(
         document.body.scrollHeight,
         document.documentElement.scrollHeight,
@@ -1141,10 +1219,18 @@
       if (percentual >= 90 && !scroll90Enviado) {
         scroll90Enviado = true;
         dispararRastreamento("scroll_90", {
-          product_name: nomeProdutoAtual,
+          product_name: produtoRastreamentoAtual.nome,
+          product_id: produtoRastreamentoAtual.id,
+          percent_scrolled: 90,
         });
         window.removeEventListener("scroll", aoRolar);
       }
+    };
+
+    const aoRolar = () => {
+      if (scrollPendente || scroll90Enviado) return;
+      scrollPendente = true;
+      rafScroll90 = window.requestAnimationFrame(verificarScroll);
     };
 
     window.addEventListener("scroll", aoRolar, { passive: true });
@@ -1153,12 +1239,62 @@
 
   function ligarEngajamento120s() {
     if (!configRastreamentoAtual || configRastreamentoAtual.ativo === false) return;
+    if (window.__ppl_timer_engajamento_120s) return;
+    window.__ppl_timer_engajamento_120s = true;
 
-    window.setTimeout(() => {
+    const alvoMs = 120000;
+    let acumuladoMs = 0;
+    let inicioVisivel = document.visibilityState === "visible" ? Date.now() : null;
+    let enviado = false;
+
+    const limpar = () => {
+      if (timerEngajamento120s) {
+        window.clearTimeout(timerEngajamento120s);
+        timerEngajamento120s = null;
+      }
+      document.removeEventListener("visibilitychange", aoMudarVisibilidade);
+      window.removeEventListener("pagehide", limpar);
+    };
+
+    const enviar = () => {
+      if (enviado) return;
+      enviado = true;
       dispararRastreamento("engaged_120s", {
-        product_name: nomeProdutoAtual,
+        product_name: produtoRastreamentoAtual.nome,
+        product_id: produtoRastreamentoAtual.id,
+        engagement_time_seconds: 120,
       });
-    }, 120000);
+      limpar();
+    };
+
+    const agendar = () => {
+      if (timerEngajamento120s) window.clearTimeout(timerEngajamento120s);
+      const restante = alvoMs - acumuladoMs;
+      if (restante <= 0) {
+        enviar();
+        return;
+      }
+      timerEngajamento120s = window.setTimeout(enviar, restante);
+    };
+
+    function aoMudarVisibilidade() {
+      if (document.visibilityState === "visible") {
+        inicioVisivel = Date.now();
+        agendar();
+        return;
+      }
+
+      if (inicioVisivel) acumuladoMs += Date.now() - inicioVisivel;
+      inicioVisivel = null;
+      if (timerEngajamento120s) {
+        window.clearTimeout(timerEngajamento120s);
+        timerEngajamento120s = null;
+      }
+    }
+
+    if (inicioVisivel) agendar();
+    document.addEventListener("visibilitychange", aoMudarVisibilidade);
+    window.addEventListener("pagehide", limpar, { once: true });
   }
 
   /* ---------------------------------------------------------------------

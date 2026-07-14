@@ -22,7 +22,14 @@
     "_instrucoes": "Cole aqui os IDs reais quando o tráfego pago for configurado. A página captura UTMs/click IDs, salva a origem por alguns dias, repassa UTMs para o checkout e envia eventos para GA4, Google Ads, Meta Pixel e dataLayer quando os IDs existirem.",
     "google_analytics_id": "G-GPDNC6KS4X",
     "google_ads_id": "",
+    "google_ads_conversion_label": "",
     "meta_pixel_id": "",
+    "produto": {
+      "id": "planejar_para_lucrar_turma_4",
+      "nome": "Planejar para Lucrar",
+      "valor": 2000,
+      "moeda": "BRL"
+    },
     "utm_retencao_dias": 30,
     "repassar_utm_checkout": true,
     "adicionar_origem_whatsapp": true

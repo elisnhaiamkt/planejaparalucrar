@@ -157,8 +157,6 @@ Parâmetros capturados automaticamente:
 Eventos disparados:
 - `begin_checkout`
 - `click_whatsapp`
-- `faq_open`
-- `view_section`
 - `scroll_90`
 - `engaged_120s`
 
@@ -166,7 +164,9 @@ Para ativar as ferramentas de mídia, preencha em `config.json >
 rastreamento`:
 - `google_analytics_id`
 - `google_ads_id`
+- `google_ads_conversion_label`
 - `meta_pixel_id`
+- `produto.id`, `produto.nome`, `produto.valor` e `produto.moeda`
 
 Quando esses IDs existem, o `app.js` carrega as tags automaticamente e envia
 eventos para GA4, Google Ads, Meta Pixel e `dataLayer`. Mesmo sem IDs, cada
