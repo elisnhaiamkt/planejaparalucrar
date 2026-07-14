@@ -168,14 +168,14 @@ rastreamento`:
 - `meta_pixel_id`
 - `produto.id`, `produto.nome`, `produto.valor` e `produto.moeda`
 
-Quando esses IDs existem, o `app.js` carrega as tags automaticamente e envia
-eventos para GA4, Google Ads, Meta Pixel e `dataLayer`. Mesmo sem IDs, cada
-evento aparece no console do navegador com `[rastreamento]`, o que permite
-testar antes de publicar.
+O site envia eventos apenas para `window.dataLayer`. O Google Tag Manager
+`GTM-KSK8ZPW9` fica responsável por encaminhar esses eventos para GA4, Google
+Ads, Meta Pixel e outras plataformas. Cada evento também aparece no console do
+navegador com `[rastreamento]`, o que permite testar antes de publicar.
 
 Se o `config.json` não puder ser carregado por algum problema temporário, a
 página continua montando os conteúdos e botões. Nesse cenário, o rastreamento
-é ignorado e nenhum script externo de analytics é carregado.
+da aplicação é ignorado e nenhum evento interno é enviado ao `dataLayer`.
 
 O checkout recebe as UTMs automaticamente quando
 `repassar_utm_checkout` está como `true`. O WhatsApp recebe um resumo da origem

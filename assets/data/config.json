@@ -20,6 +20,7 @@
 
   "rastreamento": {
     "_instrucoes": "Cole aqui os IDs reais quando o tráfego pago for configurado. A página captura UTMs/click IDs, salva a origem por alguns dias, repassa UTMs para o checkout e envia eventos para GA4, Google Ads, Meta Pixel e dataLayer quando os IDs existirem.",
+    "google_tag_manager_id": "GTM-KSK8ZPW9",
     "google_analytics_id": "G-GPDNC6KS4X",
     "google_ads_id": "",
     "google_ads_conversion_label": "",

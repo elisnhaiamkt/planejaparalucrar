@@ -46,19 +46,6 @@
     valor: 2000,
     moeda: "BRL",
   };
-  const MAPA_META = {
-    page_view: "PageView",
-    begin_checkout: "InitiateCheckout",
-    click_whatsapp: "WhatsAppClick",
-    scroll_90: "Scroll90",
-    engaged_120s: "Engaged120s",
-    purchase: "Purchase",
-  };
-  const EVENTOS_META_PADRAO = new Set(["PageView", "InitiateCheckout", "Purchase"]);
-  const MAPA_GOOGLE_ADS = {
-    begin_checkout: "conversion",
-    purchase: "conversion",
-  };
   const LOCATIONS_RASTREAMENTO = {
     depoimentos: "provas_sociais",
     "cta-final": "cta_final",
@@ -85,6 +72,7 @@
       google_analytics_id: "",
       google_ads_id: "",
       google_ads_conversion_label: "",
+      google_tag_manager_id: "GTM-KSK8ZPW9",
       meta_pixel_id: "",
       produto: Object.assign({}, PRODUTO_RASTREAMENTO_PADRAO),
       utm_retencao_dias: 30,
@@ -830,95 +818,13 @@
     );
   }
 
-  function scriptExternoJaCarregado(src, id) {
-    if (id && document.getElementById(id)) return true;
-    return Array.from(document.scripts).some((script) => script.src === src);
-  }
-
-  function carregarScriptExterno(src, id) {
-    if (!src || scriptExternoJaCarregado(src, id)) return;
-    const script = document.createElement("script");
-    script.async = true;
-    script.src = src;
-    if (id) script.id = id;
-    document.head.appendChild(script);
-  }
-
-  function inicializarGtagGlobal() {
+  function garantirDataLayer() {
     window.dataLayer = window.dataLayer || [];
-    window.gtag = window.gtag || function () {
-      window.dataLayer.push(arguments);
-    };
-  }
-
-  function carregarGoogleAnalytics(measurementId) {
-    if (!measurementId) return;
-
-    const scriptGoogleTag = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(measurementId);
-    carregarScriptExterno(scriptGoogleTag, "google-tag");
-
-    inicializarGtagGlobal();
-
-    window.__ppl_gtag_js_iniciado = window.__ppl_gtag_js_iniciado || false;
-    if (!window.__ppl_gtag_js_iniciado) {
-      window.gtag("js", new Date());
-      window.__ppl_gtag_js_iniciado = true;
-    }
-
-    window.__ppl_ga4_configurados = window.__ppl_ga4_configurados || {};
-    if (!window.__ppl_ga4_configurados[measurementId]) {
-      window.gtag("config", measurementId);
-      window.__ppl_ga4_configurados[measurementId] = true;
-    }
-  }
-
-  function carregarGoogleAds(conversionId) {
-    if (!conversionId) return;
-
-    const scriptGoogleTag = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(conversionId);
-    carregarScriptExterno(scriptGoogleTag, "google-tag");
-
-    inicializarGtagGlobal();
-    window.__ppl_google_ads_configurados = window.__ppl_google_ads_configurados || {};
-    if (!window.__ppl_google_ads_configurados[conversionId]) {
-      window.gtag("config", conversionId);
-      window.__ppl_google_ads_configurados[conversionId] = true;
-    }
-  }
-
-  function carregarMetaPixel(pixelId) {
-    if (!pixelId || (window.__ppl_meta_pixels_iniciados && window.__ppl_meta_pixels_iniciados[pixelId])) return;
-
-    if (typeof window.fbq !== "function") {
-      window.fbq = function () {
-        window.fbq.callMethod
-          ? window.fbq.callMethod.apply(window.fbq, arguments)
-          : window.fbq.queue.push(arguments);
-      };
-      if (!window._fbq) window._fbq = window.fbq;
-      window.fbq.push = window.fbq;
-      window.fbq.loaded = true;
-      window.fbq.version = "2.0";
-      window.fbq.queue = [];
-    }
-
-    carregarScriptExterno("https://connect.facebook.net/en_US/fbevents.js", "meta-pixel");
-    window.__ppl_meta_pixels_iniciados = window.__ppl_meta_pixels_iniciados || {};
-    window.fbq("init", pixelId);
-    window.__ppl_meta_pixels_iniciados[pixelId] = true;
-    enviarEventoMeta("page_view", {});
   }
 
   function instalarTagsRastreamento(config) {
     if (!config || config.ativo === false) return;
-
-    const gaId = config.google_analytics_id;
-    const adsId = config.google_ads_id;
-    const metaId = config.meta_pixel_id;
-
-    carregarGoogleAnalytics(gaId);
-    if (adsId && adsId !== gaId) carregarGoogleAds(adsId);
-    carregarMetaPixel(metaId);
+    garantirDataLayer();
   }
 
   /* ---------------------------------------------------------------------
@@ -1081,12 +987,8 @@
 
     const payload = obterPayloadRastreamento(parametros);
 
-    window.dataLayer = window.dataLayer || [];
+    garantirDataLayer();
     window.dataLayer.push(Object.assign({ event: nomeEvento }, payload));
-
-    enviarEventoGA4(nomeEvento, payload);
-    enviarEventoMeta(nomeEvento, payload);
-    enviarEventoGoogleAds(nomeEvento, payload);
 
     // Sempre loga no console para facilitar testes antes de plugar as ferramentas
     console.info("[rastreamento]", nomeEvento, payload);
@@ -1094,39 +996,6 @@
 
   function dispararRastreamento(nomeEvento, dataAttrs) {
     registrarEvento(nomeEvento, dataAttrs);
-  }
-
-  function enviarEventoGA4(nomeEvento, payload) {
-    if (nomeEvento === "page_view" || typeof window.gtag !== "function") return;
-    window.gtag("event", nomeEvento, payload);
-  }
-
-  function enviarEventoMeta(nomeEvento, payload) {
-    if (typeof window.fbq !== "function" || !configRastreamentoAtual.meta_pixel_id) return;
-    const eventoMeta = MAPA_META[nomeEvento];
-    if (!eventoMeta) return;
-
-    if (EVENTOS_META_PADRAO.has(eventoMeta)) {
-      window.fbq("track", eventoMeta, payload);
-      return;
-    }
-
-    window.fbq("trackCustom", eventoMeta, payload);
-  }
-
-  function enviarEventoGoogleAds(nomeEvento, payload) {
-    if (typeof window.gtag !== "function") return;
-    if (!MAPA_GOOGLE_ADS[nomeEvento]) return;
-
-    const adsId = configRastreamentoAtual.google_ads_id;
-    const label = configRastreamentoAtual.google_ads_conversion_label;
-    if (!adsId || !label) return;
-
-    window.gtag("event", MAPA_GOOGLE_ADS[nomeEvento], {
-      send_to: adsId + "/" + label,
-      value: payload.value,
-      currency: payload.currency,
-    });
   }
 
   function ligarRastreamento() {
@@ -1177,6 +1046,8 @@
 
     if (evento === "begin_checkout") {
       return Object.assign({}, payloadBase, {
+        product_id: produtoRastreamentoAtual.id,
+        product_name: produtoRastreamentoAtual.nome,
         currency: produtoRastreamentoAtual.moeda,
         value: Number(produtoRastreamentoAtual.valor || 0),
         items: [
