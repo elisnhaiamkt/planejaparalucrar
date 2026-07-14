@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://planejarparalucrar.elisnhaiaconsultoria.com.br/sitemap.xml
