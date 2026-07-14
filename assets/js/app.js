@@ -38,8 +38,51 @@
     utm_retencao_dias: 30,
     repassar_utm_checkout: true,
     adicionar_origem_whatsapp: true,
+    ativo: true,
   };
   const NOME_PRODUTO_PADRAO = "Planejar para Lucrar";
+  const CONFIG_FALLBACK_SEM_RASTREAMENTO = {
+    produto: {
+      nome: "Planejar para Lucrar",
+      turma: "Turma 4",
+      periodo: "Julho 2026",
+      vagas: 10,
+    },
+    links: {
+      checkout_hotmart: "https://pay.hotmart.com/X106411510P",
+      whatsapp_grupo_vip: "https://chat.whatsapp.com/JfPpVMzVl1U6pW0Z3qGoP7",
+      whatsapp_equipe: "https://wa.me/5547984657656?text=Ol%C3%A1!%20Tenho%20uma%20d%C3%BAvida%20sobre%20o%20Planejar%20para%20Lucrar%20-%20Turma%204",
+      instagram: "https://www.instagram.com/elisnhaiaconsultoria/",
+      linkedin: "https://www.linkedin.com/in/elisnhaiaconsultoria/",
+      site: "https://www.elisnhaia.com.br",
+      email: "elisnhaiaconsultoria@gmail.com",
+    },
+    rastreamento: {
+      ativo: false,
+      google_analytics_id: "",
+      google_ads_id: "",
+      google_ads_conversion_label: "",
+      meta_pixel_id: "",
+      utm_retencao_dias: 30,
+      repassar_utm_checkout: false,
+      adicionar_origem_whatsapp: false,
+    },
+    exibicao: {
+      mostrar_contagem_vagas: false,
+      vagas_restantes: 10,
+    },
+    contador: {
+      ativo: false,
+    },
+    garantia: {
+      ativo: true,
+      dias: 7,
+    },
+    imagens: {
+      autoridade: "assets/images/autoridade/elis-nhaia.jpg",
+      depoimentos: {},
+    },
+  };
   let contextoMarketing = null;
   let configRastreamentoAtual = RASTREAMENTO_PADRAO;
   let nomeProdutoAtual = NOME_PRODUTO_PADRAO;
@@ -70,6 +113,15 @@
     return resposta.json();
   }
 
+  async function carregarConfigOpcional() {
+    try {
+      return await carregarJSON("config.json");
+    } catch (erro) {
+      console.warn("config.json nao foi carregado. A pagina seguira sem rastreamento:", erro);
+      return CONFIG_FALLBACK_SEM_RASTREAMENTO;
+    }
+  }
+
   async function iniciar() {
     // Componentes e dados podem ser buscados em paralelo
     const [, dados] = await Promise.all([
@@ -82,7 +134,7 @@
       ]),
       Promise.all([
         carregarJSON("content.json"),
-        carregarJSON("config.json"),
+        carregarConfigOpcional(),
         carregarJSON("faq.json"),
         carregarJSON("testimonials.json"),
       ]).then(([content, config, faq, testimonials]) => ({ content, config, faq, testimonials })),
@@ -785,6 +837,8 @@
   }
 
   function instalarTagsRastreamento(config) {
+    if (!config || config.ativo === false) return;
+
     const gaId = config.google_analytics_id;
     const adsId = config.google_ads_id;
     const metaId = config.meta_pixel_id;
@@ -973,6 +1027,8 @@
   }
 
   function dispararRastreamento(nomeEvento, dataAttrs) {
+    if (!configRastreamentoAtual || configRastreamentoAtual.ativo === false) return;
+
     const payload = obterPayloadRastreamento(dataAttrs);
 
     window.dataLayer = window.dataLayer || [];
@@ -995,6 +1051,8 @@
   }
 
   function ligarRastreamento() {
+    if (!configRastreamentoAtual || configRastreamentoAtual.ativo === false) return;
+
     document.body.addEventListener("click", (evento) => {
       const el = evento.target.closest("[data-track]");
       if (!el) return;
@@ -1038,6 +1096,8 @@
   }
 
   function ligarVisualizacaoSecoes() {
+    if (!configRastreamentoAtual || configRastreamentoAtual.ativo === false) return;
+
     const secoes = Array.from(document.querySelectorAll("main section[id]"));
     if (!secoes.length || typeof IntersectionObserver !== "function") return;
 
@@ -1063,6 +1123,8 @@
   }
 
   function ligarProfundidadeRolagem() {
+    if (!configRastreamentoAtual || configRastreamentoAtual.ativo === false) return;
+
     let scroll90Enviado = false;
 
     const aoRolar = () => {
@@ -1090,6 +1152,8 @@
   }
 
   function ligarEngajamento120s() {
+    if (!configRastreamentoAtual || configRastreamentoAtual.ativo === false) return;
+
     window.setTimeout(() => {
       dispararRastreamento("engaged_120s", {
         product_name: nomeProdutoAtual,
