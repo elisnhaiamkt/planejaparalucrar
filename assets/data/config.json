@@ -3,15 +3,15 @@
 
   "produto": {
     "nome": "Planejar para Lucrar",
-    "turma": "Turma 4",
-    "periodo": "Julho 2026",
+    "turma": "",
+    "periodo": "",
     "vagas": 10
   },
 
   "links": {
     "checkout_hotmart": "https://pay.hotmart.com/X106411510P",
     "whatsapp_grupo_vip": "https://chat.whatsapp.com/JfPpVMzVl1U6pW0Z3qGoP7",
-    "whatsapp_equipe": "https://wa.me/5547984657656?text=Ol%C3%A1!%20Tenho%20uma%20d%C3%BAvida%20sobre%20o%20Planejar%20para%20Lucrar%20-%20Turma%204",
+    "whatsapp_equipe": "https://wa.me/5547984657656?text=Ol%C3%A1!%20Tenho%20uma%20d%C3%BAvida%20sobre%20o%20Planejar%20para%20Lucrar",
     "instagram": "https://www.instagram.com/elisnhaiaconsultoria/",
     "linkedin": "https://www.linkedin.com/in/elisnhaiaconsultoria/",
     "site": "https://www.elisnhaia.com.br",
@@ -43,7 +43,7 @@
 
   "contador": {
     "_instrucoes": "ativo: true mostra o contador. data_limite precisa estar no formato AAAA-MM-DDTHH:MM:SS-03:00 (horário de Brasília). Troque para a data real de fechamento das inscrições da Turma 4 antes de publicar — o valor abaixo é um EXEMPLO.",
-    "ativo": true,
+    "ativo": false,
     "modo": "semanal_ate_data_limite",
     "data_inicio": "2026-06-28T00:00:00-03:00",
     "data_limite": "2026-07-29T23:59:59-03:00",
