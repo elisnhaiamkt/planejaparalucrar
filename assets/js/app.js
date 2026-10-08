@@ -833,7 +833,7 @@
 
   function aplicarLinks(links) {
     const mensagensWhatsApp = {
-      "whatsapp-pix-investimento": "Olá! Quero garantir minha vaga no Planejar para Lucrar pagando via Pix com desconto.",
+      "whatsapp-pix-investimento": "Olá! Quero garantir minha vaga no Planejar para Lucrar pagando à vista via Pix.",
     };
 
     const montarLinkWhatsApp = (linkBase, mensagem) => {
