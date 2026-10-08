@@ -54,8 +54,8 @@
   const CONFIG_FALLBACK_SEM_RASTREAMENTO = {
     produto: {
       nome: "Planejar para Lucrar",
-      turma: "Turma 4",
-      periodo: "Julho 2026",
+      turma: "",
+      periodo: "",
       vagas: 10,
     },
     links: {
@@ -833,7 +833,7 @@
 
   function aplicarLinks(links) {
     const mensagensWhatsApp = {
-      "whatsapp-pix-investimento": "Olá! Quero garantir minha vaga no Planejar para Lucrar - Turma 4 pagando via Pix com desconto.",
+      "whatsapp-pix-investimento": "Olá! Quero garantir minha vaga no Planejar para Lucrar pagando via Pix com desconto.",
     };
 
     const montarLinkWhatsApp = (linkBase, mensagem) => {
