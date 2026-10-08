@@ -33,6 +33,26 @@
     "link_google": "https://www.google.com/search?q=elis+nhaia+consultoria+e+treinamento&oq=elis+nhaia+consultoria+e+treinamento&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQABjvBTIHCAIQABjvBTIHCAMQABjvBTIHCAQQABjvBTIHCAUQABjvBdIBCTcwODFqMGoxNagCCLACAfEFJz7VYeh6IPI&sourceid=chrome&ie=UTF-8#lrd=0x74f13db97d2e3f5:0x19ab5e46cb9e898c,1,,,,",
     "avaliacoes": [
       {
+        "texto": "Fazer o Planejar para Lucrar com a Elis foi essencial para eu conseguir enxergar com mais clareza para onde queria levar meu escritório de arquitetura ir e, principalmente, quais passos precisava dar para chegar lá.",
+        "nome": "Cristiane Menchon",
+        "empresa": "",
+        "data": "",
+        "nota": 5,
+        "destaque": true,
+        "imagem": "",
+        "link": ""
+      },
+      {
+        "texto": "Quero agradecer à Elis Nhaia pela consultoria que transformou minha vida em apenas um mês. Hoje consigo organizar melhor minha agenda, tenho mais tempo para mim e ainda evoluí muito na forma de me apresentar e comunicar meu trabalho. Foi um mês de muito aprendizado, crescimento e mudanças reais. Elis, muito obrigada por todo o direcionamento e dedicação!",
+        "nome": "Daia Porton",
+        "empresa": "",
+        "data": "",
+        "nota": 5,
+        "destaque": true,
+        "imagem": "",
+        "link": ""
+      },
+      {
         "texto": "Quando escolhi a consultoria em grupo com a Elis, encarei como uma oportunidade. Afinal, há anos gostaria de fazer uma consultoria com ela, e na modalidade em grupo foi super possível. Antes de fechar minha inscrição, enviei uma série de dúvidas e todas foram sanadas (e posso dizer, cumpridas). Fui vista de forma individual ao mesmo tempo que tive oportunidade de conhecer profissionais de outras áreas. As demandas, necessidades e questões de ramos diferentes, pasmem, podem ser as mesmas ou muito parecidas. Talvez me alongue, mas escolhi a Elis também pois gosto do seu método científico e resolutivo, fujo de frases motivacionais e mensagens vazias. A consultoria trouxe metas e rumos. As soluções estavam todas comigo, sempre estiveram. Mas outra cabeça, outro olhar e método me ajudaram a criar uma estratégia a seguir. E como extra, ela é uma pessoa cheia de vontade e envolvida com muita gente de ramos distintos. Ela te puxa a participar, a interagir e ajuda a criar pontes.",
         "nome": "Dai",
         "empresa": "Cactando Cactos e Suculentas",
@@ -69,6 +89,26 @@
         "data": "",
         "nota": 5,
         "destaque": true,
+        "imagem": "",
+        "link": ""
+      },
+      {
+        "texto": "A Elis é uma profissional incrível, entrega sempre mais do que o esperado! Visão cirúrgica e prática sobre as coisas dentro de um negócio. O que mais me surpreendeu foi ela olhar para todas as áreas dentro da empresa, e não apenas um setor isolado.",
+        "nome": "Ana Carolina Vansuita",
+        "empresa": "",
+        "data": "",
+        "nota": 5,
+        "destaque": false,
+        "imagem": "",
+        "link": ""
+      },
+      {
+        "texto": "Encontrar uma profissional tão dedicada faz toda a diferença. Desde o primeiro atendimento percebi o quanto ela domina o assunto e realmente se preocupa com o sucesso dos seus clientes. É atenciosa, prestativa e extremamente competente. O conhecimento que ela compartilha é de um valor imenso. Valeu cada centavo e faria novamente sem pensar duas vezes!!",
+        "nome": "Tatiane Besen",
+        "empresa": "",
+        "data": "",
+        "nota": 5,
+        "destaque": false,
         "imagem": "",
         "link": ""
       },
