@@ -1,7 +1,7 @@
 {
   "_instrucoes": "Edite os textos entre aspas. Não altere os nomes das chaves (a parte antes dos dois pontos). Para pular uma linha dentro de um texto, use \\n.",
 
-  "produto_resumo": "Grupo Estratégico Online · Turma 4 · Julho 2026",
+  "produto_resumo": "Grupo Estratégico Online · Inscrições abertas",
 
   "marca": {
     "empresa": "Elis Nhaia Consultoria e Treinamento",
@@ -14,12 +14,12 @@
   },
 
   "hero": {
-    "tarja_superior": "Grupo Estratégico Online — Turma 4 · Julho 2026",
+    "tarja_superior": "Grupo Estratégico Online · Inscrições abertas",
     "meta_curta": "Apenas 10 empresárias (os) • 4 encontros ao vivo • Consultoria  com Elis Nhaia",
-    "escassez": "TURMA 4 — Vagas limitadas",
+    "escassez": "VAGAS LIMITADAS · 10 por turma",
     "headline": "Planejar para Lucrar",
     "subheadline": "Pare de administrar problemas. Comece a construir uma empresa que cresce com direcionamento.",
-    "cta_principal": "Quero garantir minha vaga na Turma 4",
+    "cta_principal": "Quero garantir minha vaga",
     "cta_secundario": "Entrar no grupo VIP do WhatsApp",
     "nota_cta": "Acesso confirmado imediatamente · Vagas limitadas a 10 empresárias (os)."
   },
@@ -28,7 +28,7 @@
     "frase": "As vagas limitadas para esta turma encerram em:",
     "frase_fecho": "Não deixe o crescimento da sua empresa para depois.",
     "labels": { "dias": "dias", "horas": "horas", "min": "min", "seg": "seg" },
-    "expirado": "As inscrições da Turma 4 foram encerradas. Deixe seu contato para ser avisado da próxima turma."
+    "expirado": "As vagas desta turma foram preenchidas. Entre no grupo VIP para garantir seu lugar na próxima."
   },
 
   "dores": {
@@ -68,9 +68,9 @@
       "instagram": "Instagram",
       "linkedin": "LinkedIn"
     },
-    "escassez": "TURMA 4: Apenas 10 vagas. Não abrimos novas vagas durante a turma, após preenchidas, será preciso aguardar a próxima edição.",
+    "escassez": "Apenas 10 vagas por turma. Não abrimos novas vagas durante a turma, após preenchidas, será preciso aguardar a próxima.",
     "cta": "Pronta (o) para começar? Dê o próximo passo agora mesmo.",
-    "cta_botao": "Quero garantir minha vaga na Turma 4",
+    "cta_botao": "Quero garantir minha vaga",
     "nota_cta": "Há somente 10 vagas."
   },
 
@@ -131,7 +131,7 @@
         "entrega": "Aqui você sente: isso jamais seria possível em grupo."
       }
     ],
-    "cta": "Quero garantir minha vaga na Turma 4"
+    "cta": "Quero garantir minha vaga"
   },
 
   "transformacao": {
@@ -140,7 +140,7 @@
     "antes": {
       "label": "Antes",
       "itens": [
-        "Empresária reativa, apagando incêndio.",
+        "Empresária reativa, sem clareza do que priorizar.",
         "Decisões no improviso, sem critério.",
         "Negócio cresce e a confusão cresce junto."
       ]
@@ -180,9 +180,9 @@
   "provas_sociais": {
     "eyebrow": "Quem já passou pelo programa",
     "titulo": "O que diz quem participou das turmas anteriores",
-    "escassez": "Turma 4 com apenas 10 vagas. Se você ficar de fora, precisará entrar na lista de espera da próxima edição.",
+    "escassez": "Cada turma tem apenas 10 vagas. Se você ficar de fora, precisará aguardar a abertura da próxima.",
     "cta_titulo": "Junte-se às empresárias que já decidiram crescer com estrutura.",
-    "cta_botao": "Quero minha vaga na Turma 4"
+    "cta_botao": "Quero minha vaga"
   },
 
   "investimento": {
@@ -206,7 +206,7 @@
       }
     ],
     "rodape": "Consultoria individual com a Elis: R$ 18.000. Você acessa o mesmo nível de trabalho estratégico por R$ 2.000.",
-    "escassez": "Após completar as 10 vagas da Turma 4, as inscrições fecham e você precisará entrar na lista de espera da próxima edição.",
+    "escassez": "Após completar as 10 vagas da turma, você precisará aguardar a abertura da próxima.",
     "cta_botao": "Pagar parcelado na Hotmart",
     "cta_pix_botao": "Pagar via Pix com desconto",
     "nota_cta": "Parcelamento pela Hotmart. Desconto à vista disponível via Pix com atendimento da equipe."
@@ -234,10 +234,10 @@
   "cta_final": {
     "titulo": "O próximo nível do seu negócio está a uma decisão de distância.",
     "subtitulo": "A estrutura e a clareza que você busca estão aqui.",
-    "escassez": "Turma 4 · Julho 2026 · Apenas 10 vagas",
+    "escassez": "Inscrições abertas · Apenas 10 vagas por turma",
     "cta_botao": "Quero minha vaga no Planejar para Lucrar",
     "cta_secundario": "Entrar no grupo VIP do WhatsApp",
-    "nota_cta": "Acesso imediato · Turma 4 · Julho 2026 · Garantia de {dias} dias."
+    "nota_cta": "Acesso imediato · Garantia de {dias} dias."
   },
 
   "footer": {
