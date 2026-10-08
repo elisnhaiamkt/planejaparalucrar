@@ -201,15 +201,15 @@
         "tipo": "vista",
         "label": "Pix à vista — melhor opção",
         "valor": "R$ 2.000",
-        "nota": "pagamento via Pix com a equipe.",
+        "nota": "10% de desconto no Pix · é só chamar a equipe.",
         "destaque": true
       }
     ],
     "rodape": "Consultoria individual com a Elis: R$ 18.000. Você acessa o mesmo nível de trabalho estratégico por R$ 2.000.",
     "escassez": "Após completar as 10 vagas da turma, você precisará aguardar a abertura da próxima.",
     "cta_botao": "Pagar parcelado na Hotmart",
-    "cta_pix_botao": "Pagar à vista via Pix",
-    "nota_cta": "Parcelamento pela Hotmart. Pagamento à vista via Pix com atendimento da equipe."
+    "cta_pix_botao": "Pagar via Pix com 10% de desconto",
+    "nota_cta": "Parcelamento pela Hotmart. No Pix à vista, 10% de desconto direto com a equipe."
   },
 
   "garantia": {
